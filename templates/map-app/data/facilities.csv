@@ -1,0 +1,11 @@
+id,name,lga,type,quality,operator,capacity,destinations,source,surveyed,lng,lat
+f1,Ikorodu Ferry Terminal,Ikorodu,Ferry Terminal,Developed,LagFerry,1800,Falomo; Five Cowrie Creek; Marina,"Field survey, Mar 2026",2026-03-14,3.5012,6.5788
+f2,Marina Ferry Terminal,Lagos Island,Ferry Terminal,Developed,LagFerry,2400,Ikorodu; Apapa; Ebute Ero,"Field survey, Feb 2026",2026-02-02,3.3958,6.4501
+f3,Ijede Jetty,Ikorodu,Jetty,Less developed,Private operators,300,Ikorodu; Baiyeku,"Rider interviews, Apr 2026",2026-04-09,3.568,6.53
+f4,Five Cowrie Creek Terminal,Eti-Osa,Ferry Terminal,Developed,Texas Connection Ferries,1100,Marina; Falomo,"Field survey, Feb 2026",2026-02-18,3.43,6.439
+f5,Baiyeku Boat Landing,Ikorodu,Boat Landing,Less developed,Informal,120,Ijede; Badore,Satellite + interviews,2026-04-11,3.557,6.505
+f6,Takwa Bay Landing,Eti-Osa,Boat Landing,Less developed,Charter only,80,Marina,"Field survey, Jan 2026",2026-01-27,3.402,6.405
+f7,Badore Ferry Terminal,Eti-Osa,Ferry Terminal,Developed,LagFerry,1500,Ijede; Ikorodu,"Field survey, May 2026",2026-05-06,3.596,6.462
+f8,Apapa Jetty,Apapa,Jetty,Developed,LagFerry,700,Marina,"Field survey, Feb 2026",2026-02-21,3.36,6.44
+f9,Ebute Ero Jetty,Lagos Island,Jetty,Less developed,Private operators,250,Marina,Rider interviews,2026-03-30,3.388,6.457
+f10,Falomo Jetty,Eti-Osa,Jetty,Developed,LagFerry,600,Ikorodu; Five Cowrie Creek,"Field survey, Feb 2026",2026-02-19,3.423,6.443

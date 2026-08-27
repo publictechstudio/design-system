@@ -32,6 +32,10 @@
   --color-footer: var(--ink-800);
   --color-on-footer: var(--paper-50);
 
+  /* Inverse surface — tooltips, snackbars, anything that sits ON the UI */
+  --color-inverse-surface: var(--ink-800);
+  --color-on-inverse-surface: var(--paper-50);
+
   --color-link: var(--blue-600);
   --color-link-hover: var(--blue-800);
 
@@ -55,6 +59,8 @@
   --color-on-nav: #E6EAEB;
   --color-footer: #000000;
   --color-on-footer: #E6EAEB;
+  --color-inverse-surface: #E6EAEB;
+  --color-on-inverse-surface: #17181C;
 }
 
 /* ── Lagos Ferry Map ───────────────────────────────────────────
@@ -84,6 +90,8 @@
   --color-on-nav: var(--paper-0);
   --color-footer: var(--ferry-on-surface);
   --color-on-footer: var(--ferry-surface);
+  --color-inverse-surface: var(--ferry-on-surface);
+  --color-on-inverse-surface: var(--ferry-surface);
   --color-footer-deep: var(--ink-900);
   --color-on-footer-muted: var(--ferry-ink-muted);
   --color-on-footer-variant: var(--ferry-outline-variant);

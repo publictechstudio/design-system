@@ -28,4 +28,5 @@ role: product theme, map/data-viz encoding, data-table patterns
 | `tokens/map.css`, `guidelines/map-rules.md` | lagos-ferry-map-react: `src/components/LeafletMap.tsx`, `FacilityList.tsx` |
 | `components/marketing/*` | public-tech-studio: `client/src/components/*` |
 | `components/core/*`, `data/*`, `feedback/*`, `navigation/*`, `icons/*` | both — see each `.prompt.md` |
+| `templates/map-app/*`, `Map App Template.dc.html` | new in this project — generic config-driven map app template; generalised from lagos-ferry-map-react `src/components/LeafletMap.tsx`, `MapWrapper.tsx`, `FacilitiesTable.tsx` |
 | `assets/logos/`, `assets/brand/`, `assets/imagery/` | public-tech-studio: `client/src/assets/`; lagos-ferry-map-react: `public/` |

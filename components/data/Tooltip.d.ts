@@ -6,6 +6,8 @@ export interface TooltipProps {
   /** The definition, in prose. Wraps at 220px. */
   label: React.ReactNode;
   placement?: 'top' | 'bottom';
+  /** hover = default, for an inline icon. click = tap target, closes on blur/re-click. */
+  trigger?: 'hover' | 'click';
   /** The trigger — usually <Icon name="info" size={14} />. */
   children?: React.ReactNode;
   style?: React.CSSProperties;

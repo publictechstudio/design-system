@@ -297,6 +297,11 @@ path data:
 | `DirectionsBoatOutlined` | `ship` |
 | `SecurityOutlined` | `shield-check` |
 
+App-chrome glyphs added for the map app template, also in `ICON_PATHS`:
+`search`, `arrowLeft` (lucide `arrow-left`), `file`, `pencil`. Take any further
+glyph from Lucide and register it here first — never inline path data in a
+template.
+
 Marketing surfaces additionally use `ClipboardList`, `Workflow`, `BarChart3`,
 `Sparkles`, `Users`, `Search`, `Mail`, `Menu`. Load Lucide from CDN. For a
 glyph outside the set above, take it from Lucide — never mix in a second family.

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x300" name="Data — DataTable, StatRow, Tooltip" -->
+<!-- @dsCard group="Components" viewport="700x760" name="Data — DataTable, StatRow, Tooltip, LayerToggle, Legend, SearchField, StatGrid, DetailList, DownloadRow" -->
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
 <style>
@@ -48,5 +48,51 @@
   <div>
     <div class="lbl">Tooltip</div>
     <span style="display:inline-block;border-radius:var(--radius-md-md);padding:6px 12px;background:var(--color-on-surface);color:var(--color-surface);font-size:12px;max-width:220px">Ferry routes tentatively proposed under the OMI EKO expansion programme</span>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">LayerToggle + Legend — map/data layer panel row</div>
+    <div style="width:260px;background:var(--color-surface-raised);border:1px solid var(--color-outline-variant);border-radius:var(--radius-md-lg);padding:14px 16px">
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;flex:1">
+          <span style="width:32px;height:18px;border-radius:999px;background:var(--color-primary);display:flex;align-items:center;padding:2px;box-sizing:border-box"><span style="width:14px;height:14px;border-radius:999px;background:#fff;transform:translateX(14px)"></span></span>
+          <span style="font-size:14px;font-weight:700;color:var(--color-on-surface)">Ferry facilities</span>
+        </div>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      </div>
+      <div style="margin:8px 0 0 42px;display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:999px;background:var(--color-primary)"></span><span style="font-size:12px;color:var(--color-on-surface-variant)">Ferry Terminal</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:999px;background:var(--clay-700)"></span><span style="font-size:12px;color:var(--color-on-surface-variant)">Boat Landing</span></div>
+      </div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">SearchField</div>
+    <div style="position:relative;width:240px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:11px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <div style="width:100%;box-sizing:border-box;font-size:14px;padding:9px 12px 9px 34px;border-radius:var(--radius-md-md);border:1px solid var(--color-outline-variant);background:var(--color-surface);color:var(--color-on-surface-variant)">Search facilities…</div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">StatGrid</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--color-outline-variant);border:1px solid var(--color-outline-variant);border-radius:var(--radius-md-lg);overflow:hidden;width:280px">
+      <div style="background:var(--color-surface-raised);padding:16px"><div style="font-size:28px;font-weight:700;color:var(--color-primary)">132</div><div style="font-size:12px;margin-top:4px;color:var(--color-on-surface-variant)">Facilities mapped</div></div>
+      <div style="background:var(--color-surface-raised);padding:16px"><div style="font-size:28px;font-weight:700;color:var(--color-primary)">20</div><div style="font-size:12px;margin-top:4px;color:var(--color-on-surface-variant)">LGAs</div></div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">DetailList</div>
+    <div style="width:240px;background:var(--color-surface-raised);border:1px solid var(--color-outline-variant);border-radius:var(--radius-md-lg);padding:16px">
+      <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-on-surface-variant);margin-bottom:10px">Facility</div>
+      <div style="padding:6px 0;border-top:1px solid var(--color-hairline)"><div style="font-size:12px;color:var(--color-on-surface-variant)">Type</div><div style="font-size:14px;font-weight:700;margin-top:2px">Ferry Terminal</div></div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">DownloadRow</div>
+    <div style="width:320px;background:var(--color-surface-raised);border:1px solid var(--color-outline-variant);border-radius:var(--radius-md-lg)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px">
+        <div style="display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg><div><div style="font-size:13px;font-weight:700">Facilities</div><div style="font-size:11px;color:var(--color-on-surface-variant)">GeoJSON · 412 KB</div></div></div>
+        <span style="font-size:12px;font-weight:700;padding:6px 12px;border-radius:var(--radius-md-sm);border:1px solid var(--color-outline-variant)">Download</span>
+      </div>
+    </div>
   </div>
 </div>
