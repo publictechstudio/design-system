@@ -1,0 +1,60 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Marketing — ProjectCard, ServiceCard, FeatureCard, LabelChip" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .lbl { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); margin-bottom:6px; }
+  .card { background:var(--color-surface-raised); border-radius:var(--radius); box-shadow:var(--shadow-md); overflow:hidden; }
+  .lc { display:inline-block; padding:4px 12px; border-radius:var(--radius-chip); font-size:12px;
+    font-weight:600; text-transform:uppercase; letter-spacing:var(--tracking-overline); }
+  .btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700;
+    padding:6px 12px; border-radius:var(--radius); background:var(--color-action); color:#fff; }
+
+</style>
+<div style="display:grid;grid-template-columns:1.3fr 1fr;gap:16px">
+  <div>
+    <div class="lbl">ProjectCard</div>
+    <div class="card">
+      <img src="../../assets/imagery/ferry-map-project.png" alt="Lagos Ferry Map" style="width:100%;height:120px;object-fit:cover;display:block">
+      <div style="padding:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div style="font-size:16px;font-weight:600;color:var(--color-on-surface)">Lagos Ferry Map</div>
+          <span class="btn">View Product</span>
+        </div>
+        <div style="font-size:13px;line-height:1.5;margin-top:8px;color:color-mix(in srgb,var(--color-on-surface) 70%,transparent)">The first comprehensive map of Lagos' ferry system aimed at reducing road congestion</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--color-hairline)">
+          <span class="lc" style="background:var(--label-blue-bg);color:var(--label-blue-fg)">Field data collection</span>
+          <span class="lc" style="background:var(--label-teal-bg);color:var(--label-teal-fg)">Geospatial data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div>
+      <div class="lbl">ServiceCard</div>
+      <div class="card">
+        <div style="background:var(--color-surface-feature);padding:16px;text-align:center;color:#fff">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/></svg>
+          <div style="font-size:14px;font-weight:600">Data Collection</div>
+        </div>
+        <div style="padding:12px;font-size:12px;line-height:1.55;color:color-mix(in srgb,var(--color-on-surface) 70%,transparent)">From scoping projects, to designing data schemas and survey forms, to conducting field work</div>
+      </div>
+    </div>
+    <div>
+      <div class="lbl">FeatureCard</div>
+      <div style="position:relative;overflow:hidden;border-radius:var(--radius);background:var(--color-surface-feature);box-shadow:var(--shadow-md)">
+        <img src="../../assets/imagery/urban-aerial-view.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3">
+        <div style="position:absolute;inset:0;background:color-mix(in srgb,var(--color-surface-feature) 80%,transparent)"></div>
+        <div style="position:relative;padding:18px;color:#fff">
+          <div style="font-size:15px;font-weight:700;margin-bottom:10px">Open Data Projects</div>
+          <div style="font-size:12px;line-height:1.55;margin-bottom:12px">Free, public resources that solve critical data gaps</div>
+          <span style="display:inline-block;background:#fff;color:var(--color-surface-feature);font-size:12px;font-weight:700;padding:6px 12px;border-radius:var(--radius)">View Open Data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

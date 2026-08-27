@@ -1,0 +1,52 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Data — DataTable, StatRow, Tooltip" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .lbl { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); margin:0 0 6px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { text-align:left; padding:10px 14px; font-size:12px; font-weight:500; text-transform:uppercase;
+    letter-spacing:var(--tracking-overline); color:var(--color-on-surface-variant);
+    background:var(--color-surface-variant); }
+  td { padding:10px 14px; border-top:1px solid color-mix(in srgb,var(--color-outline-variant) 60%,transparent);
+    color:var(--color-on-surface-variant); }
+  .em { color:var(--color-on-surface); font-weight:500; }
+  .chip { display:inline-block; padding:2px 8px; border-radius:var(--radius-full); font-size:12px;
+    background:var(--color-surface-variant); color:var(--color-on-surface-variant); }
+
+</style>
+<div data-theme="ferry" style="display:flex;flex-direction:column;gap:14px">
+  <div>
+    <div class="lbl">StatRow</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--color-on-surface-variant)">
+      <span class="em">24</span><span>facilities</span>
+      <span style="color:var(--color-outline-variant);margin:0 4px">·</span>
+      <span class="em">61</span><span>active routes</span>
+      <span style="color:var(--color-outline-variant);margin:0 4px">·</span>
+      <span class="em">9</span><span>LGAs</span>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">DataTable — outlined container, sticky header, funnel filters</div>
+    <div style="border:1px solid var(--color-outline-variant);border-radius:var(--radius-md-lg);overflow:hidden">
+      <table>
+        <thead><tr>
+          <th><span style="display:inline-flex;align-items:center;gap:6px">LGA<svg width="12" height="12" viewBox="0 0 24 24" fill="color-mix(in srgb,var(--color-on-surface-variant) 50%,transparent)"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39A.998.998 0 0 0 18.95 4H5.04a1 1 0 0 0-.79 1.61z"/></svg></span></th><th><span style="display:inline-flex;align-items:center;gap:6px">Facility Name<svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39A.998.998 0 0 0 18.95 4H5.04a1 1 0 0 0-.79 1.61z"/></svg></span></th><th><span style="display:inline-flex;align-items:center;gap:6px">Facility Type<svg width="12" height="12" viewBox="0 0 24 24" fill="color-mix(in srgb,var(--color-on-surface-variant) 50%,transparent)"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39A.998.998 0 0 0 18.95 4H5.04a1 1 0 0 0-.79 1.61z"/></svg></span></th><th><span style="display:inline-flex;align-items:center;gap:6px">Destinations<svg width="12" height="12" viewBox="0 0 24 24" fill="color-mix(in srgb,var(--color-on-surface-variant) 50%,transparent)"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39A.998.998 0 0 0 18.95 4H5.04a1 1 0 0 0-.79 1.61z"/></svg></span></th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:var(--color-surface)"><td>Eti-Osa</td><td class="em">Ikoyi Jetty</td><td>Terminal</td><td><span class="chip">CMS</span> <span class="chip">Ikorodu</span></td></tr>
+          <tr style="background:var(--color-surface)"><td>Kosofe</td><td class="em">Mile 12 Landing</td><td>Landing</td><td><span class="chip" style="background:color-mix(in srgb,var(--clay-700) 15%,transparent);color:var(--clay-700);font-weight:700">Charter Only</span></td></tr>
+          <tr style="background:var(--color-surface)"><td>Apapa</td><td class="em">Liverpool Jetty</td><td>Jetty</td><td style="color:color-mix(in srgb,var(--color-on-surface-variant) 50%,transparent)">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Tooltip</div>
+    <span style="display:inline-block;border-radius:var(--radius-md-md);padding:6px 12px;background:var(--color-on-surface);color:var(--color-surface);font-size:12px;max-width:220px">Ferry routes tentatively proposed under the OMI EKO expansion programme</span>
+  </div>
+</div>

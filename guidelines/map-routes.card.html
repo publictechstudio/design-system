@@ -1,0 +1,22 @@
+<!-- @dsCard group="Map" viewport="700x170" name="Route encoding" subtitle="Colour by operator; selection thickens, never re-hues" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start; }
+  .sw { width:104px; }
+  .chip { height:56px; border-radius:var(--radius); box-shadow:inset 0 0 0 1px rgba(0,0,0,.06); }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; letter-spacing:.01em; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .lg { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--color-on-surface); }
+  .ln { width:64px; flex-shrink:0; }
+
+</style>
+<div style="display:flex;flex-direction:column;gap:9px">
+  <div class="lg"><svg class="ln" height="8"><line x1="0" y1="4" x2="64" y2="4" stroke="var(--map-route-lagferry)" stroke-width="3"/></svg>LagFerry (government) <span class="v">#1565C0</span></div>
+  <div class="lg"><svg class="ln" height="8"><line x1="0" y1="4" x2="64" y2="4" stroke="var(--map-route-commercial)" stroke-width="3"/></svg>Commercial operator <span class="v">#808080</span></div>
+  <div class="lg"><svg class="ln" height="8"><line x1="0" y1="4" x2="64" y2="4" stroke="var(--map-route-default)" stroke-width="3"/></svg>Default route <span class="v">#4e4e4e</span></div>
+  <div class="lg"><svg class="ln" height="8"><line x1="0" y1="4" x2="64" y2="4" stroke="var(--map-route-planned)" stroke-width="2" stroke-dasharray="8 6"/></svg>Planned (OMI EKO) <span class="v">dashed 8,6</span></div>
+  <div class="lg"><svg class="ln" height="10"><line x1="0" y1="5" x2="64" y2="5" stroke="var(--map-route-selected)" stroke-width="6"/></svg>Selected <span class="v">weight 6</span></div>
+</div>

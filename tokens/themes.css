@@ -1,0 +1,106 @@
+/* ── Semantic aliases ──────────────────────────────────────────
+   :root is the STUDIO theme — the parent brand, and the one the team
+   prefers. [data-theme="ferry"] is the Lagos Ferry Map product theme.
+   [data-theme="studio-dark"] is the studio's dark scope. */
+:root {
+  --color-primary: var(--blue-600);
+  --color-primary-hover: var(--blue-800);
+  --color-on-primary: var(--paper-0);
+
+  /* Action = the default filled button */
+  --color-action: var(--blue-600);
+  --color-action-hover: var(--blue-800);
+  --color-on-action: var(--paper-0);
+  --color-action-disabled: #9CA3AF;   /* "Coming soon" chips */
+
+  --color-surface: var(--paper-50);
+  --color-surface-raised: var(--paper-0);
+  --color-surface-variant: var(--paper-200);
+  --color-surface-alt: color-mix(in srgb, var(--paper-200) 30%, transparent);
+  --color-surface-feature: var(--blue-tailwind-600);
+  --color-on-surface: var(--ink-800);
+  --color-on-surface-variant: var(--ink-500);
+  --color-on-surface-feature: var(--paper-0);
+
+  --color-outline: var(--ink-400);
+  --color-outline-variant: var(--paper-300);
+  --color-hairline: var(--paper-150);
+
+  /* Nav & footer */
+  --color-nav: var(--paper-0);
+  --color-on-nav: var(--ink-800);
+  --color-footer: var(--ink-800);
+  --color-on-footer: var(--paper-50);
+
+  --color-link: var(--blue-600);
+  --color-link-hover: var(--blue-800);
+
+  /* Shape & depth defaults — 3.2px everywhere, plus the card lift */
+  --shape-container: var(--radius-container);
+  --shape-control: var(--radius-control);
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-lg);
+}
+
+[data-theme="studio-dark"] {
+  --color-surface: #000000;
+  --color-surface-raised: #17181C;
+  --color-surface-variant: #131518;
+  --color-surface-alt: #05131C;
+  --color-on-surface: #E6EAEB;
+  --color-on-surface-variant: #737A80;
+  --color-outline-variant: #24262A;
+  --color-hairline: #24262A;
+  --color-nav: #17181C;
+  --color-on-nav: #E6EAEB;
+  --color-footer: #000000;
+  --color-on-footer: #E6EAEB;
+}
+
+/* ── Lagos Ferry Map ───────────────────────────────────────────
+   Navy chrome and MD3 elevation. Shape is NOT a product variable:
+   containers and controls take the system's 3.2px radius here too. */
+[data-theme="ferry"] {
+  --color-primary: var(--ferry-blue);
+  --color-primary-hover: var(--ferry-blue-dark);
+  --color-on-primary: var(--paper-0);
+  --color-primary-container: var(--ferry-blue-container);
+  --color-on-primary-container: var(--ferry-blue-deep);
+
+  --color-action: var(--ferry-navy);
+  --color-action-hover: var(--ferry-blue);
+  --color-on-action: var(--paper-0);
+
+  --color-surface: var(--ferry-surface);
+  --color-surface-raised: var(--paper-0);
+  --color-surface-variant: var(--ferry-surface-variant);
+  --color-on-surface: var(--ferry-on-surface);
+  --color-on-surface-variant: var(--ferry-on-surface-variant);
+
+  --color-outline: var(--ferry-outline);
+  --color-outline-variant: var(--ferry-outline-variant);
+
+  --color-nav: var(--ferry-navy);
+  --color-on-nav: var(--paper-0);
+  --color-footer: var(--ferry-on-surface);
+  --color-on-footer: var(--ferry-surface);
+  --color-footer-deep: var(--ink-900);
+  --color-on-footer-muted: var(--ferry-ink-muted);
+  --color-on-footer-variant: var(--ferry-outline-variant);
+  --color-footer-hairline: var(--ferry-ink-hairline);
+
+  --color-link: var(--ferry-blue);
+  --color-link-hover: var(--ferry-blue-dark);
+
+  --color-status-charter: var(--clay-700);
+  --color-status-planned: var(--forest-700);
+  --color-status-degraded: var(--rust-700);
+
+  /* Shape stays system-wide; only depth flips to the product system */
+  --shape-container: var(--radius-container);
+  --shape-control: var(--radius-control);
+  --shadow-card: var(--shadow-elevation-1);
+  --shadow-card-hover: var(--shadow-elevation-2);
+
+  --color-scrim-photo: color-mix(in srgb, var(--ferry-navy) 75%, transparent);
+}

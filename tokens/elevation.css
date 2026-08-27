@@ -1,0 +1,19 @@
+/* The studio uses Tailwind's shadow scale and lifts cards on hover.
+   The ferry product uses MD3's two-part elevation instead. Both ship. */
+:root {
+  /* Studio (Tailwind) */
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+
+  /* The signature card lift: shadow-md → shadow-lg plus a 2px rise,
+     300ms ease-out. This is what "material-card" means in the codebase. */
+  --card-lift-transform: translateY(-2px);
+  --card-lift-duration: 300ms;
+
+  /* Ferry product (MD3) */
+  --shadow-elevation-1: 0px 1px 2px rgba(0,0,0,0.3), 0px 1px 3px 1px rgba(0,0,0,0.15);
+  --shadow-elevation-2: 0px 1px 2px rgba(0,0,0,0.3), 0px 2px 6px 2px rgba(0,0,0,0.15);
+  --shadow-elevation-3: 0px 1px 3px rgba(0,0,0,0.3), 0px 4px 8px 3px rgba(0,0,0,0.15);
+}

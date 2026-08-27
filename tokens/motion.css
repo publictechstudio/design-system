@@ -1,0 +1,55 @@
+/* Two motion vocabularies.
+   STUDIO: entrance animations on scroll-in (fade, slide-up, scale-in) and a
+   300ms ease-out card lift. Smooth scrolling on the html element.
+   PRODUCT: 200ms colour crossfades only, plus the ferry-sail loop. */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-card: 300ms;
+  --duration-slow: 350ms;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --animate-fade-in: fadeIn 0.6s ease-in-out;
+  --animate-slide-up: slideUp 0.8s ease-out;
+  --animate-scale-in: scaleIn 0.5s ease-out;
+  --animate-bob: bob 2s ease-in-out infinite;
+  --animate-ferry-sail: ferry-sail 5s linear infinite;
+  --animate-spin: spin 1s linear infinite;
+}
+
+html { scroll-behavior: smooth; }
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes accordionDown { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes accordionUp   { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Ferry crosses the hero, decelerates into the "jetty" at centre,
+   pauses, then accelerates out. Per-keyframe timing functions. */
+@keyframes ferry-sail {
+  0%   { transform: translateX(-60vw); animation-timing-function: linear; }
+  35%  { transform: translateX(-10vw); animation-timing-function: ease-out; }
+  45%  { transform: translateX(0);     animation-timing-function: linear; }
+  60%  { transform: translateX(0);     animation-timing-function: ease-in; }
+  70%  { transform: translateX(10vw);  animation-timing-function: linear; }
+  100% { transform: translateX(60vw); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* The 6px brand rule under the studio nav. Colour is driven by scroll
+   position in JS (see components/brand/BrandRule); this keyframe set is the
+   static fallback for surfaces with no scroll container. */
+@keyframes brandCycle {
+  0%, 100% { border-color: var(--cycle-blue); }
+  33%      { border-color: var(--cycle-green); }
+  66%      { border-color: var(--cycle-yellow); }
+}

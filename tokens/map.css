@@ -1,0 +1,32 @@
+/* Map & data-viz tokens. Encoding rules live in guidelines/map-rules.md.
+   Basemap: Jawg "jawg-sunny" raster tiles via Leaflet. */
+:root {
+  /* Route polylines — coloured by operator */
+  --map-route-default: #4e4e4e;
+  --map-route-fallback: #a8a8a8;
+  --map-route-lagferry: #1565C0;
+  --map-route-commercial: #808080;
+  --map-route-selected: #262626;
+  --map-route-planned: #000000;   /* OMI EKO, drawn dashed */
+  --map-route-dash: 8, 6;
+
+  /* Route stroke weights */
+  --map-route-weight: 1.5;
+  --map-route-weight-selected: 6;
+  --map-route-hit-weight: 10;     /* invisible wider hit target */
+
+  /* Facility markers — coloured by development level */
+  --map-marker-developed: #1A1A1A;
+  --map-marker-less-developed: #8B2000;
+  --map-marker-charter-only: #2E7D32;
+  --map-marker-omi-eko: #FFFFFF;
+  --map-marker-fallback: #8c00ff;
+  --map-marker-stroke: #FFFFFF;
+  --map-marker-stroke-planned: #000000;
+  --map-marker-fill-opacity: 0.8;
+
+  /* User location */
+  --map-user-dot: #1976D2;
+  --map-user-halo-radius: 120px;
+  --map-user-halo-opacity: 0.12;
+}

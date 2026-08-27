@@ -1,0 +1,536 @@
+<!-- @dsCard group="Public Tech Studio" viewport="1280x760" name="Studio site" subtitle="Marketing site recreation — nav, hero, work, services, projects, contact" -->
+<!-- @startingPoint section="Public Tech Studio" subtitle="Marketing site — full page" viewport="1280x760" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Tech Studio — UI kit</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .sec { padding: 64px 0; }
+  @media (min-width: 1024px) { .sec { padding: 96px 0; } }
+  .wrap { max-width: var(--container-marketing); margin: 0 auto; padding: 0 32px; }
+  .h2 { margin: 0 0 16px; font-size: var(--text-hero); font-weight: 700; line-height: 1.1;
+        color: var(--color-on-surface); text-wrap: balance; }
+  .lede { margin: 0 auto; max-width: var(--container-lede); font-size: var(--text-lede);
+          line-height: 1.6; color: color-mix(in srgb, var(--color-on-surface) 70%, transparent);
+          text-wrap: pretty; }
+  .prose { font-size: var(--text-prose); line-height: 1.625;
+           color: color-mix(in srgb, var(--color-on-surface) 80%, transparent); text-wrap: pretty; }
+  .card { background: var(--color-surface-raised); border-radius: var(--radius);
+          box-shadow: var(--shadow-md); overflow: hidden;
+          transition: box-shadow 300ms ease-out, transform 300ms ease-out; }
+  .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-sans);
+         font-size: 14px; font-weight: 700; letter-spacing: var(--tracking-label);
+         padding: 8px 16px; border-radius: var(--radius); border: 1px solid transparent;
+         background: var(--color-action); color: var(--color-on-action);
+         box-shadow: var(--shadow-sm); cursor: pointer; text-decoration: none;
+         transition: background-color 200ms, box-shadow 200ms; }
+  .btn:hover { background: var(--color-action-hover); box-shadow: var(--shadow-md); color: #fff; }
+  .btn[disabled] { background: var(--color-action-disabled); cursor: not-allowed; box-shadow: none; }
+  .btn-inverse { background: var(--color-surface-raised); color: var(--color-surface-feature);
+                 border-color: var(--color-surface-raised); }
+  .btn-inverse:hover { background: color-mix(in srgb, #fff 90%, transparent);
+                       color: var(--color-surface-feature); }
+  .navlink { padding: 8px 12px; font-size: 14px; font-weight: 700; text-decoration: none;
+             color: var(--color-on-nav); transition: color 200ms; }
+  .navlink:hover { color: var(--color-primary); }
+  .lc { display: inline-block; padding: 4px 12px; border-radius: var(--radius-chip);
+        font-size: var(--text-overline); font-weight: 600; text-transform: uppercase;
+        letter-spacing: var(--tracking-overline); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+/* ── The signature brand rule ─────────────────────────────────── */
+const BLUE = [66,133,244], GREEN = [34,197,94], YELLOW = [255,235,59];
+const mix = (a,b,t) => `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(', ')})`;
+function cycleColor(p) {
+  const c = (p * 6) % 3;
+  if (c <= 1) return mix(BLUE, GREEN, c);
+  if (c <= 2) return mix(GREEN, YELLOW, c - 1);
+  return mix(YELLOW, BLUE, c - 2);
+}
+function BrandRule() {
+  const [color, setColor] = useState(() => cycleColor(0));
+  useEffect(() => {
+    const read = () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      setColor(cycleColor(Math.min(window.scrollY / (max || 1), 1)));
+    };
+    read();
+    window.addEventListener('scroll', read, { passive: true });
+    return () => window.removeEventListener('scroll', read);
+  }, []);
+  return <div aria-hidden style={{ height: 6, background: color }} />;
+}
+
+/* ── Lucide-style service icons (stroke, 2px) ─────────────────── */
+const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 2,
+                 strokeLinecap: 'round', strokeLinejoin: 'round' };
+const Glyph = ({ d, size = 32 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...stroke} aria-hidden>
+    {d.map((p, i) => <path key={i} d={p} />)}
+  </svg>
+);
+const ICONS = {
+  clipboard: ['M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2',
+              'M9 2h6v4H9z', 'M9 12h6', 'M9 16h6'],
+  workflow: ['M3 3h6v6H3z', 'M15 15h6v6h-6z', 'M9 6h4a2 2 0 0 1 2 2v7'],
+  chart: ['M3 3v18h18', 'M7 16v-5', 'M12 16V8', 'M17 16v-8'],
+  sparkles: ['M12 3l1.9 4.6L18.5 9.5 13.9 11.4 12 16l-1.9-4.6L5.5 9.5l4.6-1.9z',
+             'M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z'],
+  users: ['M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
+          'M22 21v-2a4 4 0 0 0-3-3.9', 'M16 3.1a4 4 0 0 1 0 7.8'],
+  search: ['M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z', 'M21 21l-4.3-4.3'],
+  mail: ['M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+         'M22 7l-10 6L2 7'],
+  external: ['M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4', 'M14 4h6v6', 'M20 4L10 14'],
+  close: ['M18 6 6 18', 'M6 6l12 12'],
+};
+
+/* ── Data ─────────────────────────────────────────────────────── */
+const SERVICES = [
+  { icon: 'clipboard', title: 'Data Collection', body: 'From scoping projects, to designing data schemas and survey forms, to conducting field work and quality checks' },
+  { icon: 'workflow', title: 'Data Transformation', body: 'Data pipelines, automations, and APIs that streamline data processing and publishing' },
+  { icon: 'chart', title: 'Interactive Data Visualization', body: 'Dynamic visual dashboards and maps that make complex data accessible and engaging' },
+  { icon: 'sparkles', title: 'AI-Assisted Software Development', body: 'Rapid prototyping and deployment of data platforms, increasing speed and quality' },
+  { icon: 'users', title: 'User Research & Usability Testing', body: 'Understanding user needs and optimizing interfaces for maximum usability and engagement' },
+  { icon: 'search', title: 'SEO Enhancements', body: 'Optimizing data platforms for organic discovery so more users can benefit from your work' },
+];
+
+const PROJECTS = [
+  { id: 'ferry', title: 'Lagos Ferry Map',
+    tagline: "The first comprehensive map of Lagos' ferry system aimed at reducing road congestion",
+    description: "With the goal of educating Lagos commuters about the availability and advantages of ferry transport, we created the first comprehensive map of Lagos' ferry system, capturing both publicly and privately operated ferries and all routes, schedules, fares, and vessel types. The team combined web mining and geocoding with citywide fieldwork, hiring and training a dozen contractors to visit every location, interview operators, capture fare and schedule information, and gather GPS traces for all routes. The resulting data was standardized into a GTFS feed and published via a custom-built interactive website.",
+    image: '../../assets/imagery/ferry-map-project.png',
+    alt: 'Lagos Ferry Map showing ferry routes and terminals',
+    href: 'https://lagosferries.com',
+    labels: [['Field data collection','blue'],['Geospatial data','teal'],['Transit data','green']] },
+  { id: 'flooding', title: "Citizens' Resource Guide: Lagos Flooding",
+    tagline: 'Impacted by flooding? This guide provides a checklist of actions you can take for your neighborhood.',
+    image: '../../assets/imagery/flood-hero.jpg',
+    alt: 'An image of flooding in Lagos and a checklist of action items',
+    href: 'https://publictech.studio/flooding',
+    labels: [['Civic engagement','orange'],['Content design','purple'],['SEO','blue']] },
+  { id: 'election', title: 'Nigeria Election Results Explorer',
+    tagline: 'Polling-unit level results mapped and made searchable for journalists and observers',
+    image: '../../assets/imagery/election-map.png',
+    alt: 'A choropleth map of Nigerian election results by state',
+    comingSoon: true,
+    labels: [['Data visualization','purple'],['Civic tech','blue']] },
+  { id: 'parliament', title: 'How many people live in Africa?',
+    tagline: 'A deep-dive into innovative population estimates and which ones are the most reliable',
+    image: '../../assets/imagery/parliament-chart.png',
+    alt: 'A chart showing seat distribution across a parliament',
+    comingSoon: true,
+    labels: [['Data research','teal'],['Data journalism','rose']] },
+];
+
+const LABEL_STYLE = (tone) => ({
+  background: `var(--label-${tone}-bg)`, color: `var(--label-${tone}-fg)`,
+});
+
+/* ── Screens ──────────────────────────────────────────────────── */
+function Nav({ onSubscribe }) {
+  const go = (id) => (e) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  return (
+    <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--color-nav)',
+                  boxShadow: 'var(--shadow-sm)' }}>
+      <div className="wrap" style={{ height: 'var(--nav-height)', display: 'flex',
+             alignItems: 'center', justifyContent: 'space-between' }}>
+        <a href="#top" onClick={go('top')} style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="../../assets/logos/public-tech-studio-horiz-black.svg"
+               alt="Public Tech Studio" style={{ height: 40, width: 'auto' }} />
+        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <a className="navlink" href="#projects" onClick={go('projects')}>Projects</a>
+          <a className="navlink" href="#services" onClick={go('services')}>Services</a>
+          <a className="navlink" href="#about" onClick={go('about')}>About</a>
+          <a className="navlink" href="#contact" onClick={go('contact')}>Contact</a>
+          <button className="btn" onClick={onSubscribe}>Subscribe</button>
+        </div>
+      </div>
+      <BrandRule />
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" style={{ position: 'relative', padding: '128px 0',
+             backgroundImage: 'url(../../assets/imagery/urban-aerial-view.jpg)',
+             backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }} />
+      <div className="wrap" style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+        <img src="../../assets/logos/public-tech-studio-horiz-white.svg"
+             alt="Public Tech Studio"
+             style={{ maxWidth: 480, width: '100%', height: 'auto',
+                      filter: 'drop-shadow(0 25px 50px rgba(0,0,0,.25))',
+                      animation: 'fadeIn .6s ease-in-out' }} />
+      </div>
+    </section>
+  );
+}
+
+function Work() {
+  const go = (id) => () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return (
+    <section className="sec" style={{ background: 'var(--color-surface-alt)' }}>
+      <div className="wrap">
+        <p className="prose" style={{ textAlign: 'center', maxWidth: 'var(--container-reading)',
+             margin: '0 auto 32px', color: 'var(--ink-900)' }}>
+          We create public data products and technology solutions to inform decision-makers
+          across Africa. Our work has a special focus on the continent's fast-changing urban landscape.
+        </p>
+
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 48 }}>
+          <img src="../../assets/brand/africa-scribble.svg" alt="Africa"
+               width="128" height="128"
+               style={{ width: 128, height: 128, filter: 'invert(1)' }} />
+        </div>
+
+        <p className="prose" style={{ textAlign: 'center', marginBottom: 32, color: 'var(--ink-900)' }}>
+          Our work falls into two categories:
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32 }}>
+          {[
+            { t: 'Open Data Projects', img: '../../assets/imagery/ferry-map-project.png',
+              b: 'Free, public resources that solve critical data gaps and showcase our capabilities (self-funded or grant funded)',
+              a: 'View Open Data', to: 'projects' },
+            { t: 'Commissioned Solutions', img: '../../assets/imagery/election-map.png',
+              b: "Tailored project execution that solves a partner's data gap and provides important data to the public. We work with nonprofits, government agencies, think tanks, and foundations.",
+              a: 'View Prior Projects', to: 'projects' },
+          ].map((c) => (
+            <div key={c.t} style={{ position: 'relative', overflow: 'hidden',
+                   borderRadius: 'var(--radius)', background: 'var(--color-surface-feature)',
+                   boxShadow: 'var(--shadow-md)' }}>
+              <img src={c.img} alt="" style={{ position: 'absolute', inset: 0, width: '100%',
+                     height: '100%', objectFit: 'cover', opacity: 0.3 }} />
+              <div style={{ position: 'absolute', inset: 0,
+                     background: 'color-mix(in srgb, var(--color-surface-feature) 80%, transparent)' }} />
+              <div style={{ position: 'relative', padding: 48, color: '#fff',
+                     display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <h3 style={{ margin: '0 0 24px', fontSize: 'var(--text-card-title)', fontWeight: 700 }}>{c.t}</h3>
+                <p style={{ margin: '0 0 24px', fontSize: 'var(--text-card-body)',
+                       lineHeight: 1.625, textWrap: 'pretty' }}>{c.b}</p>
+                <button className="btn btn-inverse" onClick={go(c.to)}>{c.a}</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section id="services" className="sec" style={{ background: 'var(--color-surface-raised)' }}>
+      <div className="wrap">
+        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <h2 className="h2">Our Services</h2>
+          <p className="lede">
+            We can either execute the entire project, from data collection to product development,
+            or support your team with specific services or hands-on training.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 24 }}>
+          {SERVICES.map((s) => (
+            <div key={s.title} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ background: 'var(--color-surface-feature)', padding: 24, color: '#fff',
+                     display: 'flex', flexDirection: 'column', alignItems: 'center',
+                     justifyContent: 'center', gap: 12, textAlign: 'center', minHeight: 132 }}>
+                <Glyph d={ICONS[s.icon]} />
+                <h3 style={{ margin: 0, fontSize: 'var(--text-title-sm)', fontWeight: 600,
+                       lineHeight: 1.4, textWrap: 'balance' }}>{s.title}</h3>
+              </div>
+              <div style={{ padding: 16, flex: 1 }}>
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.625,
+                       color: 'color-mix(in srgb, var(--color-on-surface) 70%, transparent)',
+                       textWrap: 'pretty' }}>{s.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Projects({ onRead }) {
+  return (
+    <section id="projects" className="sec" style={{ background: 'var(--color-surface)' }}>
+      <div className="wrap">
+        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <h2 className="h2">Open Data Projects</h2>
+          <p className="lede">
+            Our self-directed projects focused on urbanization and quality of life in Lagos and
+            other African cities. We create these data resources for free to benefit citizens,
+            advocates, and public servants.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 32 }}>
+          {PROJECTS.map((p) => (
+            <div key={p.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+              <img src={p.image} alt={p.alt} loading="lazy"
+                   style={{ width: '100%', height: 256, objectFit: 'cover', display: 'block' }} />
+              <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between',
+                       alignItems: 'flex-start', gap: 16, marginBottom: 12 }}>
+                  <h3 style={{ margin: 0, fontSize: 'var(--text-card-title)', fontWeight: 600,
+                         lineHeight: 1.4, color: 'var(--color-on-surface)', textWrap: 'pretty' }}>{p.title}</h3>
+                  {p.comingSoon
+                    ? <button className="btn" disabled style={{ flexShrink: 0 }}>Coming soon</button>
+                    : <a className="btn" href={p.href} target="_blank" rel="noopener noreferrer"
+                         style={{ flexShrink: 0 }}>View Product<Glyph d={ICONS.external} size={16} /></a>}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: '0 0 12px', fontSize: 'var(--text-card-body)', lineHeight: 1.625,
+                         color: 'color-mix(in srgb, var(--color-on-surface) 70%, transparent)',
+                         textWrap: 'pretty' }}>{p.tagline}</p>
+                  {p.description && (
+                    <button onClick={() => onRead(p)} style={{ border: 'none', background: 'none',
+                           padding: 0, cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                           fontSize: 14, fontWeight: 700, color: 'var(--color-primary)' }}>Read more</button>
+                  )}
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 20,
+                       paddingTop: 16, borderTop: '1px solid var(--color-hairline)' }}>
+                  {p.labels.map(([text, tone]) => (
+                    <span key={text} className="lc" style={LABEL_STYLE(tone)}>{text}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="sec" style={{ background: 'var(--color-surface-raised)' }}>
+      <div className="wrap">
+        <div style={{ textAlign: 'center', marginBottom: 64 }}><h2 className="h2">About Us</h2></div>
+        <div style={{ maxWidth: 'var(--container-reading)', margin: '0 auto',
+               display: 'flex', flexDirection: 'column', gap: 32 }}>
+          <p className="prose" style={{ margin: 0, textAlign: 'center' }}>
+            Public Tech Studio is dedicated to using data and technology to solve important
+            information gaps in Africa. In addition to spearheading our own projects, we partner
+            with non-profits, governments, and development agencies to produce user-centered open
+            data products. From election monitoring systems to urban transportation mapping, our
+            work focuses on real-world problems while building the technical capacity of the
+            organizations we work with.
+          </p>
+          <p className="prose" style={{ margin: 0, textAlign: 'center' }}>
+            Our Founder and Director, Hannah Kates is a civic technology and data product leader
+            with over a decade of experience delivering data-driven solutions in Africa, Asia, and
+            the United States. Prior to founding Public Tech Studio, she served as Head of Product
+            at Stears and then started Stears Open Data, the company's non-profit initiative.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Newsletter() {
+  return (
+    <section className="sec" style={{ background: 'var(--color-surface-raised)' }}>
+      <div className="wrap" style={{ maxWidth: 'var(--container-reading)' }}>
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <h2 className="h2">Subscribe to Our Newsletter</h2>
+          <p className="lede">
+            Stay updated on our latest projects, open data initiatives, and civic tech insights.
+          </p>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ width: 480, maxWidth: '100%', border: '1px solid #EEE',
+                 background: '#fff', padding: 20, display: 'flex', gap: 8 }}>
+            <input placeholder="Type your email…" style={{ flex: 1, padding: '10px 12px',
+                   border: '1px solid var(--color-outline-variant)', borderRadius: 'var(--radius)',
+                   fontFamily: 'var(--font-sans)', fontSize: 14, background: 'var(--paper-100)' }} />
+            <button className="btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="sec" style={{ background: 'var(--color-surface-alt)' }}>
+      <div className="wrap" style={{ maxWidth: 'var(--container-reading)', textAlign: 'center' }}>
+        <h2 className="h2">Get In Touch</h2>
+        <p className="lede" style={{ marginBottom: 32 }}>
+          Ready to transform your data ideas into a powerful tool for the public? Send us an email
+          and we'll get back to you soon.
+        </p>
+        <a className="btn" href="mailto:hello@publictech.studio" style={{ padding: '12px 32px' }}>
+          <Glyph d={ICONS.mail} size={16} />hello@publictech.studio
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const links = [['Projects','projects'],['Services','services'],['About','about'],['Contact','contact']];
+  const go = (id) => (e) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  return (
+    <footer style={{ background: 'var(--color-footer)', color: 'var(--color-on-footer)', padding: '48px 0' }}>
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 32 }}>
+          <div>
+            <h3 style={{ margin: '0 0 16px', fontSize: 'var(--text-title-lg)', fontWeight: 700 }}>
+              Public Tech Studio
+            </h3>
+            <p style={{ margin: 0, lineHeight: 1.625,
+                   color: 'color-mix(in srgb, var(--color-on-footer) 80%, transparent)' }}>
+              We build public data products to inform decision-makers across Africa.
+            </p>
+          </div>
+          <div>
+            <h4 style={{ margin: '0 0 16px', fontSize: 'var(--text-prose)', fontWeight: 600 }}>Quick Links</h4>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex',
+                   flexDirection: 'column', gap: 8 }}>
+              {links.map(([label, id]) => (
+                <li key={id}>
+                  <a href={`#${id}`} onClick={go(id)} style={{ textDecoration: 'none',
+                       color: 'color-mix(in srgb, var(--color-on-footer) 80%, transparent)' }}>{label}</a>
+                </li>
+              ))}
+              <li><a href="#" style={{ textDecoration: 'none',
+                     color: 'color-mix(in srgb, var(--color-on-footer) 80%, transparent)' }}>Careers</a></li>
+              <li style={{ color: 'color-mix(in srgb, var(--color-on-footer) 80%, transparent)' }}>
+                Email: hello@publictech.studio
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 style={{ margin: '0 0 16px', fontSize: 'var(--text-prose)', fontWeight: 600 }}>Newsletter</h4>
+            <p style={{ margin: '0 0 12px',
+                   color: 'color-mix(in srgb, var(--color-on-footer) 80%, transparent)' }}>
+              Stay updated on our latest data projects and insights.
+            </p>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <input placeholder="Your email" style={{ flex: 1, minWidth: 0, padding: '8px 12px',
+                     border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-sans)',
+                     fontSize: 14 }} />
+              <button className="btn">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: 32, paddingTop: 32, textAlign: 'center',
+               borderTop: '1px solid color-mix(in srgb, var(--color-on-footer) 20%, transparent)',
+               color: 'color-mix(in srgb, var(--color-on-footer) 60%, transparent)' }}>
+          © 2026 Public Tech Studio. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Modal({ children, onClose, width = 640 }) {
+  return (
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 9999,
+           background: 'var(--scrim)', display: 'flex', alignItems: 'center',
+           justifyContent: 'center', padding: 16 }}>
+      <div onClick={(e) => e.stopPropagation()} style={{ background: 'var(--color-surface-raised)',
+             borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-2xl)', padding: 24,
+             maxWidth: width, width: '100%', maxHeight: '80vh', overflowY: 'auto',
+             position: 'relative', animation: 'scaleIn .5s ease-out' }}>
+        <button onClick={onClose} aria-label="Close" style={{ position: 'absolute', top: 16,
+               right: 16, border: 'none', background: 'none', cursor: 'pointer',
+               color: 'var(--color-on-surface-variant)' }}>
+          <Glyph d={ICONS.close} size={20} />
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [project, setProject] = useState(null);
+  const [subscribe, setSubscribe] = useState(false);
+  return (
+    <>
+      <Nav onSubscribe={() => setSubscribe(true)} />
+      <Hero />
+      <Work />
+      <Services />
+      <Projects onRead={setProject} />
+      <Newsletter />
+      <About />
+      <Contact />
+      <Footer />
+
+      {project && (
+        <Modal onClose={() => setProject(null)}>
+          <h3 style={{ margin: '0 24px 12px 0', fontSize: 'var(--text-card-title)',
+                 fontWeight: 600, color: 'var(--color-on-surface)' }}>{project.title}</h3>
+          <p style={{ margin: '0 0 16px', fontSize: 14, fontWeight: 500,
+                 color: 'var(--color-primary)' }}>{project.tagline}</p>
+          <p style={{ margin: '0 0 16px', lineHeight: 1.625,
+                 color: 'color-mix(in srgb, var(--color-on-surface) 70%, transparent)' }}>
+            {project.description}
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+            {project.labels.map(([text, tone]) => (
+              <span key={text} className="lc" style={LABEL_STYLE(tone)}>{text}</span>
+            ))}
+          </div>
+          {project.href && (
+            <a className="btn" href={project.href} target="_blank" rel="noopener noreferrer">
+              View Product<Glyph d={ICONS.external} size={16} />
+            </a>
+          )}
+        </Modal>
+      )}
+
+      {subscribe && (
+        <Modal onClose={() => setSubscribe(false)} width={480}>
+          <h3 style={{ margin: '0 24px 8px 0', fontSize: 'var(--text-card-title)',
+                 fontWeight: 600, color: 'var(--color-on-surface)' }}>Subscribe to Our Newsletter</h3>
+          <p style={{ margin: '0 0 16px',
+                 color: 'color-mix(in srgb, var(--color-on-surface) 70%, transparent)' }}>
+            Stay updated on our latest data projects and civic tech insights.
+          </p>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <input placeholder="Type your email…" style={{ flex: 1, padding: '10px 12px',
+                   border: '1px solid var(--color-outline-variant)', borderRadius: 'var(--radius)',
+                   fontFamily: 'var(--font-sans)', fontSize: 14, background: 'var(--paper-100)' }} />
+            <button className="btn" onClick={() => setSubscribe(false)}>Subscribe</button>
+          </div>
+        </Modal>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

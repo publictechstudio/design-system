@@ -1,0 +1,21 @@
+<!-- @dsCard group="Shape" viewport="700x180" name="Elevation" subtitle="Tailwind scale for the studio, MD3 for the product" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start; }
+  .sw { width:104px; }
+  .chip { height:56px; border-radius:var(--radius); box-shadow:inset 0 0 0 1px rgba(0,0,0,.06); }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; letter-spacing:.01em; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .e { width:96px; height:60px; background:var(--color-surface-raised); border-radius:var(--radius); }
+
+</style>
+<div class="row" style="gap:18px">
+  <div class="sw"><div class="e" style="box-shadow:var(--shadow-sm)"></div><div class="n">sm</div><div class="v">nav</div></div>
+  <div class="sw"><div class="e" style="box-shadow:var(--shadow-md)"></div><div class="n">md</div><div class="v">card rest</div></div>
+  <div class="sw"><div class="e" style="box-shadow:var(--shadow-lg)"></div><div class="n">lg</div><div class="v">card hover</div></div>
+  <div class="sw"><div class="e" style="box-shadow:var(--shadow-elevation-1)"></div><div class="n">elevation 1</div><div class="v">ferry card</div></div>
+  <div class="sw"><div class="e" style="box-shadow:var(--shadow-elevation-3)"></div><div class="n">elevation 3</div><div class="v">ferry dialog</div></div>
+</div>

@@ -1,0 +1,27 @@
+<!-- @dsCard group="Brand" viewport="700x150" name="Brand rule cycle" subtitle="The 6px nav rule travels through these as you scroll" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start; }
+  .sw { width:104px; }
+  .chip { height:56px; border-radius:var(--radius); box-shadow:inset 0 0 0 1px rgba(0,0,0,.06); }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; letter-spacing:.01em; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .grad { height:56px; border-radius:var(--radius);
+    background:linear-gradient(90deg, var(--cycle-blue), var(--cycle-green) 33%, var(--cycle-yellow) 66%, var(--cycle-blue)); }
+  .rule { height:6px; margin-top:14px; background:var(--cycle-green); }
+
+</style>
+<div class="grad"></div>
+<div class="row" style="margin-top:12px">
+  <div class="sw"><div class="chip" style="background:var(--cycle-blue);color:#fff;display:flex;align-items:flex-end;padding:6px;font-size:11px;font-weight:700">Aa</div><div class="n">blue</div><div class="v">rgb(66,133,244)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--cycle-green);color:#fff;display:flex;align-items:flex-end;padding:6px;font-size:11px;font-weight:700">Aa</div><div class="n">green</div><div class="v">rgb(34,197,94)</div></div>
+  <div class="sw"><div class="chip" style="background:var(--cycle-yellow);color:#1B191F;display:flex;align-items:flex-end;padding:6px;font-size:11px;font-weight:700">Aa</div><div class="n">yellow</div><div class="v">rgb(255,235,59)</div></div>
+  <div class="sw" style="width:auto;flex:1;min-width:180px">
+    <div class="rule"></div>
+    <div class="n">actual weight — 6px</div>
+    <div class="v">two full cycles per page</div>
+  </div>
+</div>

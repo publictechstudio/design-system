@@ -1,0 +1,33 @@
+<!-- @dsCard group="Brand" viewport="700x170" name="Brand marks" subtitle="The only two proprietary graphics — never redraw them" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .box { padding:16px; border-radius:var(--radius); display:flex; align-items:center; justify-content:center; height:100px; }
+
+</style>
+<div class="row">
+  <div style="width:150px">
+    <div class="box" style="background:var(--paper-0);box-shadow:var(--shadow-sm)">
+      <img src="../assets/brand/africa-scribble.svg" alt="Africa" style="width:76px;height:76px;filter:invert(1)">
+    </div>
+    <div class="n">Africa scribble</div><div class="v">inverted, 128px</div>
+  </div>
+  <div style="width:150px">
+    <div class="box" style="background:var(--ferry-navy)">
+      <img src="../assets/brand/ferry-icon.png" alt="Ferry" style="width:64px;transform:rotate(-5deg);filter:brightness(0) invert(1)">
+    </div>
+    <div class="n">Ferry icon</div><div class="v">−5°, whitened</div>
+  </div>
+  <div style="flex:1;min-width:200px">
+    <div class="box" style="background:var(--paper-0);box-shadow:var(--shadow-sm);flex-direction:column;gap:6px;align-items:flex-start">
+      <div style="font-size:13px;color:var(--color-on-surface)">Lagos Ferry Map has <strong>no wordmark</strong>.</div>
+      <div style="font-size:22px;font-weight:700;letter-spacing:var(--tracking-tight);color:var(--color-on-surface)">Lagos Ferry Map</div>
+      <div class="v">Lato 700, 22px — set as plain type</div>
+    </div>
+  </div>
+</div>

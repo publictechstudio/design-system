@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>Public Tech Studio — Design System</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-surface); }
+  a { color: var(--color-link); }
+  a:hover { color: var(--color-link-hover); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--color-surface);font-family:var(--font-sans);color:var(--color-on-surface);-webkit-font-smoothing:antialiased">
+
+  <header style="position:sticky;top:0;z-index:50;background:var(--paper-0)">
+    <div style="height:64px;max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#overview" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit">
+        <img src="./assets/logos/public-tech-studio-horiz-black.svg" alt="Public Tech Studio" style="height:32px;display:block">
+        <span style="font-size:14px;font-weight:700;letter-spacing:0.1px;color:var(--ink-500)">Design System</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500)">Theme</span>
+          <div style="display:flex;gap:4px;padding:3px;background:var(--paper-100);border-radius:var(--radius)">
+            <button onClick="{{ pickStudio }}" style="{{ studioTabStyle }}">Studio</button>
+            <button onClick="{{ pickFerry }}" style="{{ ferryTabStyle }}">Ferry</button>
+          </div>
+        </div>
+        <a href="./readme.md" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800)" style-hover="color:var(--color-primary)">Full spec</a>
+      </div>
+    </div>
+    <div style="height:6px;background:{{ ruleColor }}"></div>
+  </header>
+
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:248px minmax(0,1fr);gap:0">
+
+    <nav style="position:sticky;top:70px;align-self:start;height:calc(100vh - 70px);overflow-y:auto;padding:40px 24px 64px 32px;border-right:1px solid var(--color-outline-variant)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Foundations</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin:0 0 28px">
+        <a href="#colour" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Colour</a>
+        <a href="#typography" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Typography</a>
+        <a href="#spacing" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Spacing &amp; layout</a>
+        <a href="#shape" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Shape</a>
+        <a href="#elevation" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Elevation</a>
+        <a href="#motion" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Motion</a>
+        <a href="#icons" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Iconography</a>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Core</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin:0 0 28px">
+        <a href="#button" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Button</a>
+        <a href="#card" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Card</a>
+        <a href="#badge" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Badge &amp; Pill</a>
+        <a href="#spinner" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Spinner</a>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Marketing</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin:0 0 28px">
+        <a href="#sectionheader" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">SectionHeader</a>
+        <a href="#labelchip" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">LabelChip</a>
+        <a href="#servicecard" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">ServiceCard</a>
+        <a href="#featurecard" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">FeatureCard</a>
+        <a href="#projectcard" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">ProjectCard</a>
+        <a href="#brandrule" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">BrandRule</a>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Navigation</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin:0 0 28px">
+        <a href="#appbar" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">SiteNav &amp; AppBar</a>
+        <a href="#accordion" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Accordion</a>
+        <a href="#footer" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Footer</a>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Data &amp; feedback</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin:0 0 28px">
+        <a href="#datatable" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">DataTable</a>
+        <a href="#statrow" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">StatRow &amp; Tooltip</a>
+        <a href="#dialog" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Dialog &amp; Panel</a>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-500);margin:0 0 10px">Reference</div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <a href="#kits" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">UI kits</a>
+        <a href="#install" style="font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800);padding:5px 8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-primary);color:var(--color-primary)">Install</a>
+      </div>
+    </nav>
+
+    <main style="padding:56px 48px 120px;max-width:1000px">
+
+      <section id="overview" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 16px">Public Tech Studio</div>
+        <h1 style="margin:0 0 20px;font-size:48px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance">One system for the studio and everything it ships</h1>
+        <p style="margin:0 0 28px;max-width:48rem;font-size:20px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent);text-wrap:pretty">Public Tech Studio is the parent brand and the default theme. Lagos Ferry Map is a product theme under it — add <code style="font-family:var(--font-mono);font-size:16px;background:var(--paper-100);padding:1px 5px;border-radius:var(--radius)">data-theme="ferry"</code> to a subtree and the chrome goes navy and cards switch to MD3 elevation. Shape does not vary by theme — 3.2px everywhere. Adding a future product means adding one theme scope, not a new system.</p>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--ink-500);margin:0 0 32px">
+          <span style="font-weight:500;color:var(--ink-800)">21</span><span>components</span>
+          <span style="margin:0 4px;color:var(--paper-300)">·</span>
+          <span style="font-weight:500;color:var(--ink-800)">2</span><span>themes</span>
+          <span style="margin:0 4px;color:var(--paper-300)">·</span>
+          <span style="font-weight:500;color:var(--ink-800)">1</span><span>typeface</span>
+          <span style="margin:0 4px;color:var(--paper-300)">·</span>
+          <span style="font-weight:500;color:var(--ink-800)">1</span><span>radius</span>
+          <span style="margin:0 4px;color:var(--paper-300)">·</span>
+          <span style="font-weight:500;color:var(--ink-800)">0</span><span>gradients</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+          <div style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <div style="font-size:16px;font-weight:600;margin:0 0 6px">Flat, never gradient</div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Photographs take a flat veil. There is no <code style="font-family:var(--font-mono);font-size:13px">backdrop-filter</code> anywhere.</p>
+          </div>
+          <div style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <div style="font-size:16px;font-weight:600;margin:0 0 6px">Violet-tinted neutrals</div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Flat greys make the whole system look like a different company.</p>
+          </div>
+          <div style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <div style="font-size:16px;font-weight:600;margin:0 0 6px">Cards lift, 2px, 300ms</div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">The most repeated gesture in the brand. A card that does not lift reads as broken.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="colour" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Colour</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">One accent, two neutral families, and a three-colour signature. Hierarchy inside text is opacity of the ink colour — 80% body, 70% ledes, 60% fine print — never extra colour tokens.</p>
+
+        <sc-for list="{{ palettes }}" as="p" hint-placeholder-count="4">
+          <div style="margin:0 0 32px">
+            <div style="display:flex;align-items:baseline;gap:12px;margin:0 0 4px">
+              <h3 style="margin:0;font-size:20px;font-weight:600">{{ p.name }}</h3>
+            </div>
+            <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:var(--ink-500);max-width:56rem">{{ p.note }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <sc-for list="{{ p.swatches }}" as="s" hint-placeholder-count="4">
+                <div style="width:132px">
+                  <div style="height:64px;border-radius:var(--radius);background:{{ s.v }};box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)"></div>
+                  <div style="margin-top:8px;font-size:12px;font-weight:700;line-height:1.3">{{ s.n }}</div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500);line-height:1.5">{{ s.t }}</div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">{{ s.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+
+      <section id="typography" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Typography</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">Lato, and only Lato. Two registers coexist and must not be mixed within one surface: marketing headings are heavy and centred, product headings are regular weight and left-aligned. A 45px ferry headline at weight 400 is correct and deliberate.</p>
+
+        <div style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:8px 24px;margin:0 0 24px">
+          <sc-for list="{{ typeRows }}" as="r" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--color-hairline)">
+              <div style="font-size:{{ r.px }}px;font-weight:{{ r.w }};line-height:{{ r.lh }};color:var(--ink-800);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.s }}</div>
+              <div>
+                <div style="font-size:12px;font-weight:700">{{ r.n }}</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">{{ r.spec }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <div style="flex:1 1 240px;padding:16px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 8px">Tracking</div>
+            <div style="font-size:14px;letter-spacing:0.1px">0.1px on 14px pill labels</div>
+            <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.025em;margin-top:4px">0.025em on 12px overlines</div>
+          </div>
+          <div style="flex:1 1 240px;padding:16px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 8px">Opacity hierarchy</div>
+            <div style="font-size:14px;color:color-mix(in srgb, var(--ink-800) 80%, transparent)">80% — body copy</div>
+            <div style="font-size:14px;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">70% — ledes, card descriptions</div>
+            <div style="font-size:14px;color:color-mix(in srgb, var(--ink-800) 60%, transparent)">60% — fine print</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="spacing" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Spacing &amp; layout</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">A 4px scale with a very regular section rhythm: 64px vertical padding rising to 96px from <code style="font-family:var(--font-mono);font-size:16px">lg</code> up, inside an 80rem column. Sections alternate white, <code style="font-family:var(--font-mono);font-size:16px">#FBFAFF</code>, and a 30% wash of surface-variant — never two adjacent sections sharing one.</p>
+
+        <div style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 24px;margin:0 0 24px">
+          <sc-for list="{{ spaceRows }}" as="r" hint-placeholder-count="8">
+            <div style="display:flex;align-items:center;gap:16px;padding:5px 0">
+              <div style="width:110px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">{{ r.t }}</div>
+              <div style="width:44px;font-size:12px;font-weight:700">{{ r.v }}</div>
+              <div style="height:12px;border-radius:1px;background:var(--color-primary);width:{{ r.v }}"></div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+          <div style="padding:16px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-size:12px;font-weight:700;margin:0 0 6px">Measures</div>
+            <div style="font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--ink-500)">80rem marketing column<br>64rem data tables<br>56rem body copy<br>48rem ledes</div>
+          </div>
+          <div style="padding:16px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-size:12px;font-weight:700;margin:0 0 6px">Fixed chrome</div>
+            <div style="font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--ink-500)">64px nav / app bar<br>40px studio logo<br>6px brand rule<br>256px card media</div>
+          </div>
+          <div style="padding:16px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-size:12px;font-weight:700;margin:0 0 6px">Stacking</div>
+            <div style="font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--ink-500)">z-50 studio nav<br>z-900 map controls<br>z-5000 ferry app bar<br>z-9999 dialogs</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="shape" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Shape</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">One radius, system-wide: <code style="font-family:var(--font-mono);font-size:16px">--radius</code> is 0.2rem = 3.2px. Cards, images, buttons, nav items, inputs, dialogs, panels, data containers and map controls all take it, on both themes. This is the single easiest thing to get wrong: do not round it up to 8, 12 or 16px. The only fully round shapes are the chip family.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px">
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);box-shadow:var(--shadow-md);border-radius:var(--radius-container);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">3.2px</div>
+            <div style="margin-top:8px;font-size:12px;font-weight:700">container</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--radius-container</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);box-shadow:var(--shadow-md);border-radius:var(--radius-control);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">3.2px</div>
+            <div style="margin-top:8px;font-size:12px;font-weight:700">control</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--radius-control</div>
+          </div>
+          <div style="width:150px" data-theme="ferry">
+            <div style="height:72px;background:var(--paper-0);box-shadow:var(--shadow-elevation-1);border-radius:var(--shape-container);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">3.2px</div>
+            <div style="margin-top:8px;font-size:12px;font-weight:700;color:var(--ink-800)">ferry container</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--shape-container</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);box-shadow:var(--shadow-md);border-radius:var(--radius-chip);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">pill</div>
+            <div style="margin-top:8px;font-size:12px;font-weight:700">chip family</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--radius-chip</div>
+          </div>
+        </div>
+        <p style="margin:20px 0 0;font-size:14px;color:var(--ink-500);max-width:56rem">Chips, status badges, the mobile drag handle and circular icon buttons are the only round shapes. The ferry product's old MD3 scale — <code style="font-family:var(--font-mono);font-size:13px">--radius-md-sm</code> through <code style="font-family:var(--font-mono);font-size:13px">--radius-md-xl</code> — is retained as aliases that all resolve to <code style="font-family:var(--font-mono);font-size:13px">--radius</code>.</p>
+      </section>
+
+      <section id="elevation" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Elevation</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">Depth is shadow only. There are no inner shadows and no rings anywhere. The studio uses Tailwind's scale and lifts cards; the ferry product uses MD3's two-part elevation and never transforms.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;padding:28px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-sm)"></div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--shadow-sm</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md)"></div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--shadow-md · card</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-lg)"></div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">--shadow-lg · hover</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-elevation-1)"></div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">elevation-1 · ferry</div>
+          </div>
+          <div style="width:150px">
+            <div style="height:72px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-elevation-2)"></div>
+            <div style="margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">elevation-2 · hover</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="motion" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Motion</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">The studio has an entrance vocabulary and one signature; the product has almost nothing. Transitions are 200ms on colours and shadow for chrome, 300ms ease-out for the card lift. Never on <code style="font-family:var(--font-mono);font-size:16px">all</code>.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+          <div style="padding:20px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md)">
+            <div style="font-size:16px;font-weight:600;margin:0 0 8px">Entrances</div>
+            <div style="font-family:var(--font-mono);font-size:11px;line-height:1.9;color:var(--ink-500)">fade-in 0.6s ease-in-out<br>slide-up 0.8s ease-out, 30px<br>scale-in 0.5s ease-out, 0.9</div>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Section headers fade, prose slides up, cards scale in.</p>
+          </div>
+          <div style="padding:20px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md)">
+            <div style="font-size:16px;font-weight:600;margin:0 0 8px">The signature</div>
+            <div style="height:6px;border-radius:1px;background:{{ ruleColor }};margin:0 0 12px"></div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">The 6px nav rule travels blue → green → yellow twice over the document height, interpolated in RGB. Scroll this page to drive it. Keep it 6px, keep it smooth.</p>
+          </div>
+          <div style="padding:20px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden">
+            <div style="font-size:16px;font-weight:600;margin:0 0 8px">ferry-sail</div>
+            <div style="height:40px;display:flex;align-items:center;overflow:hidden">
+              <img src="./assets/brand/ferry-icon.png" alt="" style="width:36px;height:36px;object-fit:contain;transform:rotate(-5deg);animation:bob 2s ease-in-out infinite">
+            </div>
+            <p style="margin:8px 0 0;font-size:14px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">A 5s loop that enters fast, decelerates, <em>pauses at the jetty</em>, then accelerates out. That pause is the whole idea. <code style="font-family:var(--font-mono);font-size:13px">bob</code> floats 8px at 2s.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="icons" style="margin:0 0 80px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--ink-500);margin:0 0 12px">Foundations</div>
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Iconography</h2>
+        <p style="margin:0 0 24px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">Lucide, and only Lucide: stroke-based, 2px weight, always <code style="font-family:var(--font-mono);font-size:16px">currentColor</code>. One family on every surface — marketing, product chrome and product editorial alike. Never mix in a second. No emoji, and no Unicode characters as icons.</p>
+        <p style="margin:0 0 20px;font-size:14px;color:var(--ink-500)">The two Material sets the ferry codebase shipped are retired; each glyph maps to its closest Lucide equivalent. <code style="font-family:var(--font-mono);font-size:13px">components/icons/Icon.jsx</code> ships that mapping, so prototypes stop re-deriving path data.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;padding:24px;background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md)">
+          <sc-for list="{{ icons }}" as="i" hint-placeholder-count="8">
+            <div style="width:96px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 0;border-radius:var(--radius)" style-hover="background:var(--paper-100)">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--ink-800)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><sc-for list="{{ i.d }}" as="p" hint-placeholder-count="1"><path d="{{ p }}"></path></sc-for></svg>
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500)">{{ i.n }}</div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--paper-300)">{{ i.was }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <div style="height:1px;background:var(--color-outline-variant);margin:0 0 56px"></div>
+
+      <section id="button" style="margin:0 0 24px">
+        <h2 style="margin:0 0 8px;font-size:36px;font-weight:700;line-height:1.1">Components</h2>
+        <p style="margin:0 0 32px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">Every demo below is scoped to the theme selected in the header. Switch to Ferry to see the same components take navy chrome and MD3 elevation — shape stays constant, and no variant flags are involved.</p>
+
+        <article style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden">
+          <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+            <h3 style="margin:0;font-size:20px;font-weight:600">Button</h3>
+            <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/core/Button.jsx</code>
+          </div>
+          <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Near-square on every theme, 3.2px. Verb-first labels that name the destination. Never "Learn more".</p>
+          <div data-theme="{{ theme }}" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:1px solid transparent;border-radius:var(--shape-control);background:var(--color-action);color:var(--color-on-action);box-shadow:var(--shadow-sm);cursor:pointer;transition:background-color 200ms, box-shadow 200ms" style-hover="background:var(--color-action-hover);box-shadow:var(--shadow-md)">View Product</button>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:1px solid var(--color-outline-variant);border-radius:var(--shape-control);background:transparent;color:var(--color-primary);cursor:pointer;transition:background-color 200ms" style-hover="background:var(--state-hover-primary)">View Open Data</button>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:0;border:none;background:transparent;color:var(--color-primary);cursor:pointer">Read more</button>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:1px solid transparent;border-radius:var(--shape-control);background:var(--color-action-disabled);color:#fff;cursor:not-allowed">Coming soon</button>
+            <div style="width:100%;height:1px;background:var(--color-outline-variant);margin:4px 0"></div>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:12px;font-weight:700;letter-spacing:0.1px;padding:6px 12px;border:1px solid transparent;border-radius:var(--shape-control);background:var(--color-action);color:var(--color-on-action);box-shadow:var(--shadow-sm);cursor:pointer">sm</button>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:1px solid transparent;border-radius:var(--shape-control);background:var(--color-action);color:var(--color-on-action);box-shadow:var(--shadow-sm);cursor:pointer">md</button>
+            <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:16px;font-weight:700;letter-spacing:0.1px;padding:10px 20px;border:1px solid transparent;border-radius:var(--shape-control);background:var(--color-action);color:var(--color-on-action);box-shadow:var(--shadow-sm);cursor:pointer">lg</button>
+            <div style="padding:16px;background:var(--blue-tailwind-600);border-radius:var(--shape-container);margin-left:8px">
+              <button style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:1px solid #fff;border-radius:var(--shape-control);background:#fff;color:var(--blue-tailwind-600);cursor:pointer">inverse</button>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">variant: filled | inverse | outline | text · size: sm | md | lg · icon · trailingIcon · href · as · disabled · fullWidth</div>
+        </article>
+      </section>
+
+      <article id="card" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Card</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/core/Card.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">White, 3.2px radius, shadow-md, 24px padding, no border — and it lifts 2px to shadow-lg over 300ms ease-out. Hover them. Under the ferry theme the same component keeps its shape and takes MD3 elevation instead, and does not transform.</p>
+        <div data-theme="{{ theme }}" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;align-items:start">
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:var(--color-surface-raised);border-radius:var(--shape-container);box-shadow:var(--shadow-card);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-card-hover);transform:translateY(-2px)">
+            <img src="./assets/imagery/map-preview.jpg" alt="A map of ferry routes across Lagos lagoon" style="width:100%;height:160px;object-fit:cover;display:block">
+            <div style="padding:24px">
+              <div style="font-size:20px;font-weight:600;line-height:1.4;margin:0 0 12px">With cover media</div>
+              <p style="margin:0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--color-on-surface) 70%, transparent)">A cover image runs full-bleed at 256px above the padding box.</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;background:var(--color-surface-raised);border-radius:var(--shape-container);box-shadow:var(--shadow-card);padding:24px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-card-hover);transform:translateY(-2px)">
+            <div style="font-size:20px;font-weight:600;line-height:1.4;margin:0 0 12px">Plain card</div>
+            <p style="margin:0 0 20px;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--color-on-surface) 70%, transparent)">An internal 1px hairline is the only border a card gets — it separates the label row from the body.</p>
+            <div style="padding-top:16px;border-top:1px solid var(--color-hairline);font-size:12px;color:var(--color-on-surface-variant)">the only hairline</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">media · mediaAlt · padding (24 default, 16 dense) · lift · href · as</div>
+      </article>
+
+      <article id="badge" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Badge &amp; Pill</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/core/</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Badge is a 15% tint of a status hue behind bold 12px text, and status hues encode state — never decoration. Pill is the neutral content chip used for destination tags.</p>
+        <div data-theme="ferry" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:color-mix(in srgb, var(--clay-700) 15%, transparent);color:var(--clay-700);font-size:12px;font-weight:700;line-height:16px">Charter only</span>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:color-mix(in srgb, var(--forest-700) 15%, transparent);color:var(--forest-700);font-size:12px;font-weight:700;line-height:16px">Future OMI EKO</span>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:color-mix(in srgb, var(--rust-700) 15%, transparent);color:var(--rust-700);font-size:12px;font-weight:700;line-height:16px">Less developed</span>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:color-mix(in srgb, var(--ferry-on-surface-variant) 15%, transparent);color:var(--ferry-on-surface-variant);font-size:12px;font-weight:700;line-height:16px">Neutral</span>
+          <div style="width:100%;height:1px;background:var(--color-outline-variant);margin:4px 0"></div>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:var(--color-surface-variant);color:var(--color-on-surface-variant);font-size:12px;line-height:16px">CMS</span>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:var(--color-surface-variant);color:var(--color-on-surface-variant);font-size:12px;line-height:16px">Ikorodu</span>
+          <span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;background:var(--color-surface-variant);color:var(--color-on-surface-variant);font-size:12px;line-height:16px">Badore</span>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">Badge tone: charter | planned | degraded | neutral · Pill takes children only</div>
+      </article>
+
+      <article id="spinner" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Spinner</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/core/Spinner.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">A 2px blue ring with a transparent top edge — the only loading indicator in the system. Messages are sentence case.</p>
+        <div data-theme="{{ theme }}" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:32px;align-items:center">
+          <span style="width:16px;height:16px;border-radius:50%;border:2px solid var(--color-primary);border-top-color:transparent;animation:spin 1s linear infinite;display:block"></span>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--color-on-surface-variant)">
+            <span style="width:16px;height:16px;border-radius:50%;border:2px solid var(--color-primary);border-top-color:transparent;animation:spin 1s linear infinite;display:block"></span>
+            Loading map…
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--color-on-surface-variant)">
+            <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--color-primary);border-top-color:transparent;animation:spin 1s linear infinite;display:block"></span>
+            Loading routes…
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">size (16 inline, 14 in floating chips) · message</div>
+      </article>
+
+      <article id="sectionheader" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">SectionHeader</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/SectionHeader.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">The centred opener at the top of every marketing section: 48px bold Title Case heading, two or three words, over a 20px lede at 70% ink on a 48rem measure.</p>
+        <div style="margin:20px;padding:40px 24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);text-align:center">
+          <h4 style="margin:0 0 16px;font-size:48px;font-weight:700;line-height:1.1;text-wrap:balance">Open Data Projects</h4>
+          <p style="margin:0 auto;max-width:48rem;font-size:20px;line-height:1.6;color:color-mix(in srgb, var(--ink-800) 70%, transparent);text-wrap:pretty">We create public data products and technology solutions to inform decision-makers across Africa.</p>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">title · lede · align: center | left</div>
+      </article>
+
+      <article id="labelchip" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">LabelChip</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/LabelChip.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Capability chips on project cards, and the only fully round shape in the studio theme. Six hues, uppercase 12px semibold on Tailwind's 100/700 pairs.</p>
+        <div style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:8px">
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-blue-bg);color:var(--label-blue-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Field data collection</span>
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-green-bg);color:var(--label-green-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Open data</span>
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-purple-bg);color:var(--label-purple-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Data pipelines</span>
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-orange-bg);color:var(--label-orange-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Mapping</span>
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-teal-bg);color:var(--label-teal-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Analysis</span>
+          <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-rose-bg);color:var(--label-rose-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Training</span>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">tone: blue | green | purple | orange | teal | rose</div>
+      </article>
+
+      <article id="servicecard" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">ServiceCard</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/ServiceCard.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">A solid blue cap carrying a 32px Lucide icon and the title, over a white description well. Descriptions are one clause, no full stop.</p>
+        <div data-theme="{{ theme }}" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:var(--color-surface-raised);border-radius:var(--shape-container);box-shadow:var(--shadow-card);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-card-hover);transform:translateY(-2px)">
+            <div style="background:var(--color-surface-feature);padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:#fff">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 2h6v4H9z"></path><path d="M9 12h6"></path><path d="M9 16h6"></path></svg>
+              <div style="font-size:16px;font-weight:600;line-height:1.4;text-wrap:balance">Field Data Collection</div>
+            </div>
+            <div style="padding:16px">
+              <p style="margin:0;font-size:14px;line-height:1.625;color:color-mix(in srgb, var(--color-on-surface) 70%, transparent);text-wrap:pretty">Enumerators, instruments and quality control for primary data gathered on the ground</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:var(--color-surface-raised);border-radius:var(--shape-container);box-shadow:var(--shadow-card);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-card-hover);transform:translateY(-2px)">
+            <div style="background:var(--color-surface-feature);padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:#fff">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h6v6H3z"></path><path d="M15 15h6v6h-6z"></path><path d="M9 6h4a2 2 0 0 1 2 2v7"></path></svg>
+              <div style="font-size:16px;font-weight:600;line-height:1.4;text-wrap:balance">Data Engineering</div>
+            </div>
+            <div style="padding:16px">
+              <p style="margin:0;font-size:14px;line-height:1.625;color:color-mix(in srgb, var(--color-on-surface) 70%, transparent);text-wrap:pretty">Data pipelines, automations, and APIs that streamline data processing and publishing</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:var(--color-surface-raised);border-radius:var(--shape-container);box-shadow:var(--shadow-card);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-card-hover);transform:translateY(-2px)">
+            <div style="background:var(--color-surface-feature);padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:#fff">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 16v-5"></path><path d="M12 16V8"></path><path d="M17 16v-8"></path></svg>
+              <div style="font-size:16px;font-weight:600;line-height:1.4;text-wrap:balance">Analysis and Visualisation</div>
+            </div>
+            <div style="padding:16px">
+              <p style="margin:0;font-size:14px;line-height:1.625;color:color-mix(in srgb, var(--color-on-surface) 70%, transparent);text-wrap:pretty">Maps, dashboards and reports that make a dataset legible to decision-makers</p>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">icon (32px Lucide, white) · title · children</div>
+      </article>
+
+      <article id="featurecard" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">FeatureCard</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/FeatureCard.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">A flat blue field with a photograph at 30% beneath an 80% blue veil, 48px padding, white copy, inverse button. The only place stock photography appears.</p>
+        <div style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+          <div style="position:relative;overflow:hidden;background:var(--blue-tailwind-600);border-radius:var(--radius);box-shadow:var(--shadow-md)">
+            <img src="./assets/imagery/urban-aerial-view.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3">
+            <div style="position:absolute;inset:0;background:color-mix(in srgb, var(--blue-tailwind-600) 80%, transparent)"></div>
+            <div style="position:relative;padding:40px;display:flex;flex-direction:column;align-items:flex-start;color:#fff">
+              <h4 style="margin:0 0 24px;font-size:20px;font-weight:700;line-height:1.4">Our Open Data Projects</h4>
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.625;text-wrap:pretty">We run our own projects to close information gaps in Africa's fast-changing urban landscape.</p>
+              <a href="#projectcard" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border-radius:var(--radius);background:#fff;color:var(--blue-tailwind-600);text-decoration:none;border:1px solid #fff">View Open Data</a>
+            </div>
+          </div>
+          <div style="position:relative;overflow:hidden;background:var(--blue-tailwind-600);border-radius:var(--radius);box-shadow:var(--shadow-md)">
+            <img src="./assets/imagery/hero-traffic.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3">
+            <div style="position:absolute;inset:0;background:color-mix(in srgb, var(--blue-tailwind-600) 80%, transparent)"></div>
+            <div style="position:relative;padding:40px;display:flex;flex-direction:column;align-items:flex-start;color:#fff">
+              <h4 style="margin:0 0 24px;font-size:20px;font-weight:700;line-height:1.4">Commissioned Data Products</h4>
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.625;text-wrap:pretty">We can either execute the entire project, from data collection to product development, or support your team with specific services.</p>
+              <a href="#kits" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border-radius:var(--radius);background:#fff;color:var(--blue-tailwind-600);text-decoration:none;border:1px solid #fff">View Prior Projects</a>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">title · children · image (30% under an 80% veil) · action · padding (48 default)</div>
+      </article>
+
+      <article id="projectcard" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">ProjectCard</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/ProjectCard.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Cover image, title with the action on the same line, tagline, then a hairline and capability chips. The studio's work is its illustration — these covers are real product screenshots, and alt text describes the graphic, not the project. Unreleased work gets a grey "Coming soon" rather than being hidden.</p>
+        <div style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start">
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <img src="./assets/imagery/ferry-map-project.png" alt="A map of Lagos showing every ferry route and terminal across the lagoon" style="width:100%;height:200px;object-fit:cover;display:block">
+            <div style="padding:24px;display:flex;flex-direction:column;flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:0 0 12px">
+                <h4 style="margin:0;font-size:20px;font-weight:600;line-height:1.4;text-wrap:pretty">Lagos Ferry Map</h4>
+                <a href="./ui_kits/lagos_ferry_map/index.html" style="display:inline-flex;align-items:center;gap:8px;flex-shrink:0;font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border-radius:var(--radius);background:var(--color-action);color:#fff;text-decoration:none;box-shadow:var(--shadow-sm)" style-hover="background:var(--color-action-hover)">View Product</a>
+              </div>
+              <p style="margin:0 0 12px;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent);text-wrap:pretty">The first comprehensive map of every ferry route, terminal, schedule and fare in Lagos.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--color-hairline)">
+                <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-blue-bg);color:var(--label-blue-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Field data collection</span>
+                <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-green-bg);color:var(--label-green-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Open data</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;overflow:hidden;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <img src="./assets/imagery/election-map.png" alt="A choropleth map of Nigerian states shaded by election results" style="width:100%;height:200px;object-fit:cover;display:block">
+            <div style="padding:24px;display:flex;flex-direction:column;flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:0 0 12px">
+                <h4 style="margin:0;font-size:20px;font-weight:600;line-height:1.4;text-wrap:pretty">Election Results Explorer</h4>
+                <button style="display:inline-flex;align-items:center;gap:8px;flex-shrink:0;font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:none;border-radius:var(--radius);background:var(--color-action-disabled);color:#fff;cursor:not-allowed">Coming soon</button>
+              </div>
+              <p style="margin:0 0 12px;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent);text-wrap:pretty">Polling-unit level results, standardized and mapped for every state.</p>
+              <button style="align-self:flex-start;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:0;border:none;background:transparent;color:var(--color-primary);cursor:pointer">Read more</button>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--color-hairline)">
+                <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-purple-bg);color:var(--label-purple-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Data pipelines</span>
+                <span style="display:inline-block;padding:4px 12px;border-radius:9999px;background:var(--label-orange-bg);color:var(--label-orange-fg);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em">Mapping</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">title · tagline · image · imageAlt · href · comingSoon · labels[] · onReadMore</div>
+      </article>
+
+      <article id="brandrule" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">BrandRule</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/BrandRule.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">The identity's one piece of motion, and the thing people recognise. It is live at the top of this page — the swatches below pin it to fixed positions instead.</p>
+        <div style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius)">
+          <div style="height:6px;background:{{ ruleColor }};margin:0 0 8px"></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-500);margin:0 0 24px">live · progress {{ rulePct }}</div>
+          <div style="display:flex;gap:0">
+            <div style="flex:1;height:6px;background:var(--cycle-blue)"></div>
+            <div style="flex:1;height:6px;background:var(--cycle-green)"></div>
+            <div style="flex:1;height:6px;background:var(--cycle-yellow)"></div>
+          </div>
+          <div style="display:flex;gap:0;font-family:var(--font-mono);font-size:10px;color:var(--ink-500);margin-top:6px">
+            <div style="flex:1">rgb(66,133,244)</div>
+            <div style="flex:1">rgb(34,197,94)</div>
+            <div style="flex:1">rgb(255,235,59)</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">progress (0–1, pins the colour) · height (6, do not thin it) · scrollTarget · cycleColor() · useCycleColor()</div>
+      </article>
+
+      <article id="appbar" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">SiteNav &amp; AppBar</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/marketing/ · components/navigation/</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Both navs are sticky and 64px. The studio's is white with the brand rule as its bottom edge and bold 14px links — heavier than you would expect at that size. The product's is navy with 3.2px nav items and an 8% state layer, and Lagos Ferry Map has no wordmark: its name is plain Lato 700 at 22px.</p>
+        <div style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-direction:column;gap:24px">
+          <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)">
+            <div style="height:64px;background:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+              <img src="./assets/logos/public-tech-studio-horiz-black.svg" alt="Public Tech Studio" style="height:40px;display:block">
+              <div style="display:flex;align-items:center;gap:4px">
+                <a href="#appbar" style="padding:8px 12px;font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800)" style-hover="color:var(--color-primary)">Our Services</a>
+                <a href="#appbar" style="padding:8px 12px;font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800)" style-hover="color:var(--color-primary)">Open Data</a>
+                <a href="#appbar" style="padding:8px 12px;font-size:14px;font-weight:700;text-decoration:none;color:var(--ink-800)" style-hover="color:var(--color-primary)">About Us</a>
+                <a href="#appbar" style="margin-left:8px;display:inline-flex;align-items:center;font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border-radius:var(--radius);background:var(--blue-600);color:#fff;text-decoration:none;box-shadow:var(--shadow-sm)">Subscribe</a>
+              </div>
+            </div>
+            <div style="height:6px;background:{{ ruleColor }}"></div>
+          </div>
+
+          <div data-theme="ferry" style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-elevation-2)">
+            <div style="height:64px;background:var(--color-nav);padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+              <span style="color:#fff;font-size:22px;font-weight:700;line-height:28px;letter-spacing:-0.02em">Lagos Ferry Map</span>
+              <div style="display:flex;gap:4px">
+                <a href="#appbar" style="padding:8px 16px;border-radius:var(--shape-control);font-size:14px;font-weight:700;letter-spacing:0.1px;text-decoration:none;color:var(--color-primary)">Map</a>
+                <a href="#appbar" style="padding:8px 16px;border-radius:var(--shape-control);font-size:14px;font-weight:700;letter-spacing:0.1px;text-decoration:none;color:#fff" style-hover="color:var(--color-primary);background:var(--state-hover-primary)">Facilities</a>
+                <a href="#appbar" style="padding:8px 16px;border-radius:var(--shape-control);font-size:14px;font-weight:700;letter-spacing:0.1px;text-decoration:none;color:#fff" style-hover="color:var(--color-primary);background:var(--state-hover-primary)">Routes</a>
+                <a href="#appbar" style="padding:8px 16px;border-radius:var(--shape-control);font-size:14px;font-weight:700;letter-spacing:0.1px;text-decoration:none;color:#fff" style-hover="color:var(--color-primary);background:var(--state-hover-primary)">About</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">SiteNav: logo · links[] · action · scrollTarget — AppBar: title · links[] · activeHref</div>
+      </article>
+
+      <article id="accordion" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Accordion</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/navigation/Accordion.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Editorial rows: a 24px Lucide icon, a 20px regular-weight title, a hairline divider, and a chevron rotating 180° over 200ms. Honesty is a house style — the ferry About page ships "Limitations" as its first item.</p>
+        <div data-theme="ferry" style="margin:20px;padding:8px 24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius)">
+          <sc-for list="{{ accordionRows }}" as="row" hint-placeholder-count="3">
+            <div style="border-bottom:1px solid var(--color-outline-variant)">
+              <button onClick="{{ row.toggle }}" aria-expanded="{{ row.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border:none;background:transparent;text-align:left;cursor:pointer;font-family:var(--font-sans);color:var(--color-on-surface)" style-hover="color:var(--color-primary)">
+                <span style="display:flex;align-items:center;gap:12px;font-size:20px;font-weight:400;line-height:28px">
+                  <span style="display:flex;color:var(--color-primary)">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <sc-for list="{{ row.icon }}" as="d" hint-placeholder-count="1"><path d="{{ d }}"></path></sc-for>
+                    </svg>
+                  </span>
+                  {{ row.title }}
+                </span>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ row.chevron }};transition:transform 200ms"><path d="M6 9l6 6 6-6"></path></svg>
+              </button>
+              <sc-if value="{{ row.open }}" hint-placeholder-val="{{ true }}">
+                <div style="padding-bottom:24px;font-size:16px;line-height:24px;color:var(--color-on-surface-variant);text-wrap:pretty">{{ row.body }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">items[]: title · icon (24px outlined) · children — defaultOpen (-1 = all closed)</div>
+      </article>
+
+      <article id="footer" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Footer</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/navigation/Footer.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Dark footer with an 8% white state layer on hover, closing on the black studio-credit strip. Every ferry page ends with the studio's standing invitation — keep the question mark.</p>
+        <div data-theme="ferry" style="margin:20px;border-radius:var(--radius);overflow:hidden">
+          <div style="background:var(--color-footer);color:var(--color-on-footer);padding:40px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+            <div>
+              <div style="font-size:22px;font-weight:700;line-height:28px;margin:0 0 12px">Lagos Ferry Map</div>
+              <p style="margin:0;font-size:14px;line-height:1.7;color:var(--color-on-footer-variant);max-width:36ch;text-wrap:pretty">The first comprehensive map of every ferry route, terminal, schedule and fare in Lagos.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a href="#footer" style="font-size:14px;text-decoration:none;color:var(--color-on-footer);padding:4px 8px;margin-left:-8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-white)">Map of all routes</a>
+              <a href="#footer" style="font-size:14px;text-decoration:none;color:var(--color-on-footer);padding:4px 8px;margin-left:-8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-white)">Facilities directory</a>
+              <a href="#footer" style="font-size:14px;text-decoration:none;color:var(--color-on-footer);padding:4px 8px;margin-left:-8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-white)">Open data (GTFS)</a>
+              <a href="#footer" style="font-size:14px;text-decoration:none;color:var(--color-on-footer);padding:4px 8px;margin-left:-8px;border-radius:var(--radius)" style-hover="background:var(--state-hover-white)">Report a data issue</a>
+            </div>
+            <div style="font-size:12px;line-height:1.8;color:var(--color-on-footer-muted)">Data collected February 2026 and refreshed quarterly. LASWA contributes data on facilities under its oversight.</div>
+          </div>
+          <div style="background:#000;padding:20px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+            <span style="font-size:14px;color:var(--ferry-outline-variant)">A project from Public Tech Studio. <a href="#overview" style="color:#fff;text-decoration:none;font-weight:700">Want to build something great?</a></span>
+            <span style="font-size:12px;color:var(--ferry-ink-muted)">© 2026 Public Tech Studio</span>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">product · blurb · links[] · creditHref · creditLabel · copyright</div>
+      </article>
+
+      <article id="datatable" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">DataTable</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/data/DataTable.jsx</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">The inverse of a card: same 3.2px radius, a 1px outline, no shadow, rows divided by that outline at 60% under a sticky header. Column headers are 12px uppercase, cells sentence case, missing values an em dash. Empty states are full sentences.</p>
+        <div data-theme="ferry" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius)">
+          <div style="border:1px solid var(--color-outline-variant);border-radius:var(--shape-container);overflow:hidden;background:#fff">
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 0.8fr;background:var(--ferry-surface-variant)">
+              <div style="padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--color-on-surface-variant);display:flex;align-items:center;gap:6px">Facility
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3Z"></path></svg>
+              </div>
+              <div style="padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--color-on-surface-variant)">LGA</div>
+              <div style="padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--color-on-surface-variant)">Destinations</div>
+              <div style="padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--color-on-surface-variant)">Status</div>
+            </div>
+            <sc-for list="{{ tableRows }}" as="r" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 0.8fr;border-top:1px solid color-mix(in srgb, var(--color-outline-variant) 60%, transparent);cursor:pointer" style-hover="background:var(--state-hover-row)">
+                <div style="padding:12px 16px;font-size:14px;font-weight:500;color:var(--color-on-surface)">{{ r.name }}</div>
+                <div style="padding:12px 16px;font-size:14px;color:var(--color-on-surface-variant)">{{ r.lga }}</div>
+                <div style="padding:12px 16px;font-size:14px;color:var(--color-on-surface-variant)">{{ r.dest }}</div>
+                <div style="padding:12px 16px"><span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:9999px;font-size:12px;font-weight:700;line-height:16px;white-space:nowrap;background:color-mix(in srgb, {{ r.hue }} 15%, transparent);color:{{ r.hue }}">{{ r.status }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">columns[]: key · label · filterable · emphasis · nowrap · render() — rows[] · onRowClick · maxHeight · emptyMessage</div>
+      </article>
+
+      <article id="statrow" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 24px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">StatRow &amp; Tooltip</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/data/</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">StatRow is the inline count summary under a page title — bold count, muted noun, interpunct separators, each linking to the section it describes. Tooltip is solid ink at 12px, attached to a 14px info icon, wrapping at 220px.</p>
+        <div data-theme="ferry" style="margin:20px;padding:32px 24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:flex;flex-direction:column;gap:32px">
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--color-on-surface-variant)">
+            <a href="#datatable" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" style-hover="color:var(--color-primary)"><span style="font-weight:500;color:var(--color-on-surface)">24</span><span>facilities</span></a>
+            <span style="margin:0 4px;color:var(--color-outline-variant)">·</span>
+            <a href="#datatable" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" style-hover="color:var(--color-primary)"><span style="font-weight:500;color:var(--color-on-surface)">61</span><span>active routes</span></a>
+            <span style="margin:0 4px;color:var(--color-outline-variant)">·</span>
+            <span style="display:flex;align-items:center;gap:8px"><span style="font-weight:500;color:var(--color-on-surface)">9</span><span>LGAs</span></span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px">
+            <span style="display:flex;align-items:center;gap:6px;font-size:16px;color:var(--color-on-surface)">Charter only
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--color-on-surface-variant)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"></path><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            </span>
+            <div style="max-width:220px;padding:8px 10px;border-radius:var(--radius-container);background:var(--ink-800);color:var(--paper-50);font-size:12px;line-height:16px;text-wrap:pretty">No scheduled service — boats run only when hired for a private trip.</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">StatRow: stats[] { value · label · href } — Tooltip: label · placement: top | bottom · children</div>
+      </article>
+
+      <article id="dialog" style="background:var(--paper-0);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin:0 0 56px">
+        <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+          <h3 style="margin:0;font-size:20px;font-weight:600">Dialog &amp; Panel</h3>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">components/feedback/</code>
+        </div>
+        <p style="margin:8px 24px 0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Dialog is a centred modal on a 40% black scrim — titles are questions in sentence case. Panel is the map detail record: half-width with a 1px left edge on desktop, a two-thirds-height slide-up sheet with a 32×4px pill drag handle on mobile — one of the four shapes that stays round. Shown here in their open states.</p>
+        <div data-theme="ferry" style="margin:20px;padding:24px;background:var(--color-surface);border:1px solid var(--color-outline-variant);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start">
+          <div style="position:relative;border-radius:var(--radius);overflow:hidden;min-height:240px;background:var(--paper-200)">
+            <img src="./assets/imagery/map-preview.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div style="position:absolute;inset:0;background:color-mix(in srgb, #000 40%, transparent)"></div>
+            <div style="position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:24px">
+              <div style="width:100%;max-width:300px;background:#fff;border-radius:var(--shape-container);box-shadow:var(--shadow-2xl);padding:24px;text-align:center">
+                <div style="font-size:20px;font-weight:400;line-height:28px;margin:0 0 8px;color:var(--color-on-surface)">Did you find what you were looking for?</div>
+                <p style="margin:0 0 20px;font-size:14px;line-height:20px;color:var(--color-on-surface-variant)">Your answer helps us fix the data.</p>
+                <button style="width:100%;font-family:var(--font-sans);font-size:14px;font-weight:700;letter-spacing:0.1px;padding:8px 16px;border:none;border-radius:var(--shape-control);background:var(--color-action);color:#fff;cursor:pointer">Share Feedback</button>
+                <button style="margin-top:12px;font-family:var(--font-sans);font-size:14px;font-weight:700;padding:0;border:none;background:transparent;color:var(--color-primary);cursor:pointer">Not now</button>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fff;border-left:1px solid var(--color-outline-variant);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-elevation-1)">
+            <div style="padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid color-mix(in srgb, var(--color-outline-variant) 60%, transparent)">
+              <span style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.025em;color:var(--color-on-surface-variant)">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3.4 4.9v15.6L9 18.6l6 2.4 5.6-1.9V3.5L15 5.4 9 3Z"></path><path d="M9 3v15.6"></path><path d="M15 5.4V21"></path></svg>
+                Ferry facility
+              </span>
+              <span style="display:flex;align-items:center;gap:8px">
+                <button style="font-family:var(--font-sans);font-size:12px;font-weight:700;padding:6px 12px;border:1px solid var(--color-outline-variant);border-radius:var(--shape-control);background:transparent;color:var(--color-primary);cursor:pointer">Report a data issue</button>
+                <button aria-label="Close" style="display:flex;padding:4px;border:none;background:transparent;color:var(--color-on-surface-variant);cursor:pointer;border-radius:9999px" style-hover="background:var(--state-hover-on-surface)">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+                </button>
+              </span>
+            </div>
+            <div style="padding:24px">
+              <div style="font-size:28px;font-weight:400;line-height:36px;margin:0 0 8px;color:var(--color-on-surface)">Ikorodu Ferry Terminal</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px">
+                <span style="display:inline-flex;padding:2px 8px;border-radius:9999px;background:var(--color-surface-variant);color:var(--color-on-surface-variant);font-size:12px;line-height:16px">CMS</span>
+                <span style="display:inline-flex;padding:2px 8px;border-radius:9999px;background:var(--color-surface-variant);color:var(--color-on-surface-variant);font-size:12px;line-height:16px">Badore</span>
+              </div>
+              <p style="margin:0;font-size:16px;line-height:24px;color:var(--color-on-surface-variant);text-wrap:pretty">Operated under LASWA oversight. Some locations are quite informal and undeveloped, making them a better fit for commuters who don't mind getting their shoes muddy.</p>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--color-hairline);padding:12px 24px;font-family:var(--font-mono);font-size:11px;color:var(--ink-500)">Dialog: open · title · description · children · onDismiss · dismissLabel — Panel: typeIcon · typeLabel · onClose · action</div>
+      </article>
+
+      <section id="kits" style="margin:0 0 64px">
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">UI kits</h2>
+        <p style="margin:0 0 24px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">Two click-through recreations, built entirely from the tokens above. They are proof the system works, not part of the system.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <a href="./ui_kits/public_tech_studio/index.html" style="display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <div style="font-size:20px;font-weight:600;margin:0 0 8px">Public Tech Studio site</div>
+            <p style="margin:0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">Nav, hero, work, services, projects, contact — the marketing register end to end.</p>
+          </a>
+          <a href="./ui_kits/lagos_ferry_map/index.html" style="display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px;transition:box-shadow 300ms ease-out, transform 300ms ease-out" style-hover="box-shadow:var(--shadow-lg);transform:translateY(-2px)">
+            <div style="font-size:20px;font-weight:600;margin:0 0 8px">Lagos Ferry Map product</div>
+            <p style="margin:0;font-size:16px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 70%, transparent)">App bar, map page, facilities directory, detail panel, About accordion — the product register.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="install" style="margin:0">
+        <h2 style="margin:0 0 16px;font-size:36px;font-weight:700;line-height:1.1">Install</h2>
+        <p style="margin:0 0 24px;max-width:48rem;font-size:18px;line-height:1.625;color:color-mix(in srgb, var(--ink-800) 80%, transparent);text-wrap:pretty">One CSS entry point, one theme scope. Tailwind v4 reads the <code style="font-family:var(--font-mono);font-size:16px">@theme</code> mapping; the studio site as it stands today uses the v3 preset.</p>
+        <div style="background:var(--ink-800);border-radius:var(--radius);padding:20px 24px;overflow-x:auto;margin:0 0 20px">
+          <pre style="margin:0;font-family:var(--font-mono);font-size:12px;line-height:1.9;color:var(--paper-50)">@import "tailwindcss";
+@import "@pts/design-system/tailwind/theme.css";
+
+/* Studio surface — the default */
+&lt;SiteNav logo={logo} links={NAV} action={&lt;Button&gt;Subscribe&lt;/Button&gt;} /&gt;
+
+/* Product surface */
+&lt;div data-theme="ferry"&gt;
+  &lt;AppBar title="Lagos Ferry Map" links={NAV} activeHref="/map" /&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="padding:16px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;margin:0 0 4px">styles.css</div>
+            <div style="font-size:13px;line-height:1.6;color:var(--ink-500)">Global entry point. Imports only — link this one file.</div>
+          </div>
+          <div style="padding:16px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;margin:0 0 4px">tailwind/theme.css</div>
+            <div style="font-size:13px;line-height:1.6;color:var(--ink-500)">Tailwind v4 <code style="font-family:var(--font-mono)">@theme</code> mapping.</div>
+          </div>
+          <div style="padding:16px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;margin:0 0 4px">tailwind/preset.js</div>
+            <div style="font-size:13px;line-height:1.6;color:var(--ink-500)">Tailwind v3 preset for the studio site today.</div>
+          </div>
+          <div style="padding:16px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)">
+            <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;margin:0 0 4px">shadcn/ui</div>
+            <div style="font-size:13px;line-height:1.6;color:var(--ink-500)">Not reproduced — pull from shadcn as needed. This system supplies the tokens they read.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;studio&quot;,&quot;ferry&quot;],&quot;default&quot;:&quot;studio&quot;,&quot;tsType&quot;:&quot;'studio' | 'ferry'&quot;,&quot;section&quot;:&quot;Showcase&quot;}}">
+const BLUE = [66, 133, 244], GREEN = [34, 197, 94], YELLOW = [255, 235, 59];
+const mix = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(', ')})`;
+
+function cycleColor(p) {
+  const c = ((p * 6) % 3 + 3) % 3;
+  if (c <= 1) return mix(BLUE, GREEN, c);
+  if (c <= 2) return mix(GREEN, YELLOW, c - 1);
+  return mix(YELLOW, BLUE, c - 2);
+}
+
+/* Lucide path data, lifted verbatim from components/icons/Icon.jsx so every
+   surface ships identical glyphs. */
+const ACCORDION = [
+  {
+    title: 'Limitations',
+    icon: ['M12 9v4', 'M12 17h.01', 'M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z'],
+    body: 'Data was collected in February 2026 and is refreshed quarterly. Some locations are quite informal and undeveloped. If you see anything that is missing or incorrect, please let us know.',
+  },
+  {
+    title: 'Context and Motivation',
+    icon: ['M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5', 'M9 18h6', 'M10 22h4'],
+    body: 'Lagos ferry services are mostly private and informal, with no public documentation of routes, terminals, schedules or fares. The studio sent field contractors to every location and published the result free and open as a GTFS feed.',
+  },
+  {
+    title: 'Government Oversight and Safety',
+    icon: ['M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z', 'M9 12l2 2 4-4'],
+    body: 'The Lagos State Waterways Authority (LASWA) contributes data on facilities under its oversight. Enforcement of life-jacket and capacity rules varies by operator.',
+  },
+];
+
+class Component extends DCLogic {
+  state = { theme: this.props.theme || 'studio', open: 0, progress: 0 };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? h.scrollTop / max : 0;
+      if (Math.abs(p - this.state.progress) > 0.002) this.setState({ progress: p });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+  }
+
+  tab(active) {
+    return {
+      fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 700, letterSpacing: '0.1px',
+      padding: '5px 14px', border: 'none', cursor: 'pointer',
+      borderRadius: 'var(--radius)',
+      background: active ? 'var(--blue-600)' : 'transparent',
+      color: active ? '#fff' : 'var(--ink-500)',
+      boxShadow: active ? 'var(--shadow-sm)' : 'none',
+      transition: 'background-color 200ms, color 200ms',
+    };
+  }
+
+  renderVals() {
+    const theme = this.state.theme;
+    const ferry = theme === 'ferry';
+
+    return {
+      theme,
+      ruleColor: cycleColor(this.state.progress),
+      rulePct: Math.round(this.state.progress * 100) + '%',
+      studioTabStyle: this.tab(!ferry),
+      ferryTabStyle: this.tab(ferry),
+      pickStudio: () => this.setState({ theme: 'studio' }),
+      pickFerry: () => this.setState({ theme: 'ferry' }),
+
+      palettes: [
+        {
+          name: 'Studio accent',
+          note: 'One accent, one value. Links, filled buttons and the full-colour feature and service panels all take it. The older #007AF5 / #0054A8 pair is retired.',
+          swatches: [
+            { n: 'primary / link / panels', t: '--blue-600', v: '#2563EB' },
+            { n: 'hover', t: '--blue-800', v: '#1D4ED8' },
+          ],
+        },
+        {
+          name: 'Ink & paper',
+          note: 'Violet-tinted, never neutral grey. Cards sit on the page white in pure white — that is what makes them read as raised.',
+          swatches: [
+            { n: 'text / dark surface', t: '--ink-800', v: '#1B191F' },
+            { n: 'secondary text', t: '--ink-500', v: '#6E6A77' },
+            { n: 'outline', t: '--ink-400', v: '#75717F' },
+            { n: 'border', t: '--paper-300', v: '#E3E0EB' },
+            { n: 'surface-variant', t: '--paper-200', v: '#E5E1F0' },
+            { n: 'hairline', t: '--paper-150', v: '#EDECEE' },
+            { n: 'input', t: '--paper-100', v: '#F7F6F9' },
+            { n: 'page', t: '--paper-50', v: '#FBFAFF' },
+          ],
+        },
+        {
+          name: 'Brand cycle',
+          note: 'Appears in exactly one place: the 6px rule under the nav, interpolating between these three as you scroll.',
+          swatches: [
+            { n: 'cycle blue', t: '--cycle-blue', v: 'rgb(66,133,244)' },
+            { n: 'cycle green', t: '--cycle-green', v: 'rgb(34,197,94)' },
+            { n: 'cycle yellow', t: '--cycle-yellow', v: 'rgb(255,235,59)' },
+          ],
+        },
+        {
+          name: 'Ferry ramp',
+          note: 'The product theme: navy chrome, a flat 75% veil over hero photography, and pills that brighten to blue on hover.',
+          swatches: [
+            { n: 'navy chrome', t: '--ferry-navy', v: '#012C57' },
+            { n: 'primary', t: '--ferry-blue', v: '#1976D2' },
+            { n: 'primary container', t: '--ferry-blue-container', v: '#D6E3FF' },
+            { n: 'surface', t: '--ferry-surface', v: '#F9F9FF' },
+            { n: 'surface-variant', t: '--ferry-surface-variant', v: '#DFE2EE' },
+            { n: 'outline-variant', t: '--ferry-outline-variant', v: '#C3C7CF' },
+          ],
+        },
+        {
+          name: 'Status hues',
+          note: 'For encoding only, never decoration. Badge renders them as a 15% tint behind bold 12px text.',
+          swatches: [
+            { n: 'charter-only, planned', t: '--clay-700', v: '#7B3F00' },
+            { n: 'less-developed', t: '--rust-700', v: '#8B2000' },
+            { n: 'forest', t: '--forest-700', v: '#1A6B3C' },
+            { n: 'green', t: '--green-700', v: '#2E7D32' },
+          ],
+        },
+        {
+          name: 'Chart ramp',
+          note: 'Five hues, in order, for data graphics.',
+          swatches: [
+            { n: 'chart 1', t: '--chart-1', v: '#2563EB' },
+            { n: 'chart 2', t: '--chart-2', v: '#00B877' },
+            { n: 'chart 3', t: '--chart-3', v: '#F7B926' },
+            { n: 'chart 4', t: '--chart-4', v: '#17C063' },
+            { n: 'chart 5', t: '--chart-5', v: '#E02460' },
+          ],
+        },
+      ],
+
+      typeRows: [
+        { n: 'hero', px: 48, w: 700, lh: '1.1', spec: '--text-hero · marketing', s: 'Avoid Lagos traffic by taking the ferry' },
+        { n: 'section', px: 36, w: 700, lh: '1.1', spec: '--text-section · marketing', s: 'Open Data Projects' },
+        { n: 'display-lg', px: 45, w: 400, lh: '52px', spec: '--text-display-lg · product', s: 'The first comprehensive ferry map' },
+        { n: 'headline-lg', px: 32, w: 400, lh: '40px', spec: '--text-headline-lg · product', s: 'Facilities directory' },
+        { n: 'lede', px: 20, w: 400, lh: '1.6', spec: '--text-lede · 70% ink', s: 'Whether you commute daily or are visiting Lagos' },
+        { n: 'card title', px: 20, w: 600, lh: '1.4', spec: '--text-card-title', s: 'Lagos Ferry Map' },
+        { n: 'prose', px: 18, w: 400, lh: '1.625', spec: '--text-prose · 80% ink', s: 'We create public data products and technology solutions' },
+        { n: 'body-lg', px: 16, w: 400, lh: '24px', spec: '--text-body-lg · product', s: 'Ikorodu → CMS ferry, every 30 minutes' },
+        { n: 'nav link', px: 14, w: 700, lh: '20px', spec: '--text-label-lg · 0.1px', s: 'Our Services' },
+        { n: 'body-sm', px: 12, w: 400, lh: '16px', spec: '--text-body-sm · fine print', s: 'Data collected February 2026' },
+      ],
+
+      spaceRows: [
+        { t: '--space-1', v: '4px' },
+        { t: '--space-2', v: '8px' },
+        { t: '--space-3', v: '12px' },
+        { t: '--space-4', v: '16px' },
+        { t: '--space-6', v: '24px' },
+        { t: '--space-8', v: '32px' },
+        { t: '--space-12', v: '48px' },
+        { t: '--space-16', v: '64px' },
+        { t: '--space-24', v: '96px' },
+      ],
+
+      icons: [
+        { n: 'info', was: 'Info', d: ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z', 'M12 16v-4', 'M12 8h.01'] },
+        { n: 'map', was: 'Map', d: ['M9 3 3.4 4.9v15.6L9 18.6l6 2.4 5.6-1.9V3.5L15 5.4 9 3Z', 'M9 3v15.6', 'M15 5.4V21'] },
+        { n: 'directions', was: 'route', d: ['M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z', 'M18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z', 'M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15'] },
+        { n: 'warning', was: 'triangle-alert', d: ['M12 9v4', 'M12 17h.01', 'M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z'] },
+        { n: 'close', was: 'x', d: ['M18 6 6 18', 'M6 6l12 12'] },
+        { n: 'chevron', was: 'chevron-down', d: ['M6 9l6 6 6-6'] },
+        { n: 'filter', was: 'funnel', d: ['M22 3H2l8 9.46V19l4 2v-8.54L22 3Z'] },
+        { n: 'myLocation', was: 'locate-fixed', d: ['M2 12h3', 'M19 12h3', 'M12 2v3', 'M12 19v3', 'M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z', 'M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z'] },
+        { n: 'lightbulb', was: 'lightbulb', d: ['M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5', 'M9 18h6', 'M10 22h4'] },
+        { n: 'boat', was: 'ship', d: ['M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 1.3 0 1.9-.5 2.5-1', 'M19.4 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.9 5.3 2.8 7.8', 'M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6', 'M12 10V4', 'M8 4h8'] },
+        { n: 'security', was: 'shield-check', d: ['M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z', 'M9 12l2 2 4-4'] },
+      ],
+
+      accordionRows: ACCORDION.map((item, i) => ({
+        title: item.title,
+        icon: item.icon,
+        body: item.body,
+        open: this.state.open === i,
+        chevron: this.state.open === i ? 'rotate(180deg)' : 'none',
+        toggle: () => this.setState({ open: this.state.open === i ? -1 : i }),
+      })),
+
+      tableRows: [
+        { name: 'Ikorodu Ferry Terminal', lga: 'Ikorodu', dest: 'CMS, Badore', status: 'Active', hue: 'var(--forest-700)' },
+        { name: 'Badore Ferry Terminal', lga: 'Eti-Osa', dest: 'Ikorodu', status: 'Active', hue: 'var(--forest-700)' },
+        { name: 'Osborne Jetty', lga: 'Eti-Osa', dest: '—', status: 'Charter only', hue: 'var(--clay-700)' },
+        { name: 'Baiyeku Jetty', lga: 'Ikorodu', dest: 'CMS', status: 'Less developed', hue: 'var(--rust-700)' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

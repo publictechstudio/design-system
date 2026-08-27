@@ -1,0 +1,59 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Core — Button, Card, Badge, Pill, Spinner" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .btn { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700;
+    letter-spacing:var(--tracking-label); border:1px solid transparent; padding:8px 16px;
+    border-radius:var(--shape-control); cursor:pointer; }
+  .filled { background:var(--color-action); color:var(--color-on-action); box-shadow:var(--shadow-sm); }
+  .outline { background:transparent; color:var(--color-primary); border-color:var(--color-outline-variant); }
+  .textb { background:transparent; color:var(--color-primary); padding:0; }
+  .dis { background:var(--color-action-disabled); color:#fff; cursor:not-allowed; }
+  .chip { display:inline-flex; padding:2px 8px; border-radius:var(--radius-chip); font-size:12px; }
+  .lbl { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); margin-bottom:6px; }
+  .card { background:var(--color-surface-raised); border-radius:var(--radius); box-shadow:var(--shadow-md); padding:16px; width:190px; }
+  .sp { width:16px; height:16px; border:2px solid var(--color-primary); border-top-color:transparent;
+    border-radius:50%; animation:spin 1s linear infinite; }
+</style><style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+</style>
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div>
+    <div class="lbl">Button — studio theme (3.2px) / ferry theme (pill)</div>
+    <div class="row" style="align-items:center;gap:10px">
+      <span class="btn filled">Subscribe</span>
+      <span class="btn outline">View Prior Projects</span>
+      <span class="btn textb">Read more</span>
+      <span class="btn dis">Coming soon</span>
+      <span data-theme="ferry"><span class="btn filled">View map of all routes</span></span>
+    </div>
+  </div>
+  <div class="row" style="gap:16px;align-items:flex-start">
+    <div>
+      <div class="lbl">Card</div>
+      <div class="card">
+        <div style="font-size:16px;font-weight:600;color:var(--color-on-surface)">Lagos Mobility Map</div>
+        <div style="font-size:13px;line-height:1.5;margin-top:4px;color:color-mix(in srgb,var(--color-on-surface) 70%,transparent)">A centralized data platform for transit data in Lagos.</div>
+      </div>
+    </div>
+    <div>
+      <div class="lbl">Badge / Pill (ferry)</div>
+      <div class="row" style="gap:6px" data-theme="ferry">
+        <span class="chip" style="background:color-mix(in srgb,var(--clay-700) 15%,transparent);color:var(--clay-700);font-weight:700">Charter Only</span>
+        <span class="chip" style="background:color-mix(in srgb,var(--forest-700) 15%,transparent);color:var(--forest-700);font-weight:700">Future OMI EKO</span>
+        <span class="chip" style="background:var(--ferry-surface-variant);color:var(--ferry-on-surface-variant)">CMS</span>
+        <span class="chip" style="background:var(--ferry-surface-variant);color:var(--ferry-on-surface-variant)">Ikorodu</span>
+      </div>
+      <div class="lbl" style="margin-top:14px">Spinner</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--color-on-surface-variant)">
+        <div class="sp"></div>Loading map…
+      </div>
+    </div>
+  </div>
+</div>

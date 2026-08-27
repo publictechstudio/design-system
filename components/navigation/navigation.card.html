@@ -1,0 +1,61 @@
+<!-- @dsCard group="Components" viewport="700x320" name="Navigation — SiteNav, AppBar, Accordion" -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; padding:20px; font-family:var(--font-sans); background:var(--color-surface); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; }
+  .n { font-size:11px; font-weight:700; color:var(--color-on-surface); margin-top:6px; }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); }
+  
+  .lbl { font-family:var(--font-mono); font-size:10px; color:var(--color-on-surface-variant); margin:0 0 6px; }
+  .nl { font-size:14px; font-weight:700; color:var(--color-on-nav); }
+  .pill { padding:8px 16px; border-radius:var(--shape-control); font-size:14px; font-weight:700;
+    letter-spacing:var(--tracking-label); color:#fff; }
+
+</style>
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div>
+    <div class="lbl">SiteNav — studio, with the 6px brand rule</div>
+    <div style="background:var(--color-nav);box-shadow:var(--shadow-sm);border-radius:var(--radius) var(--radius) 0 0;overflow:hidden">
+      <div style="height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px">
+        <img src="../../assets/logos/public-tech-studio-horiz-black.svg" alt="Public Tech Studio" style="height:32px">
+        <div style="display:flex;align-items:center;gap:22px">
+          <span class="nl">Projects</span><span class="nl">Services</span><span class="nl">About</span>
+          <span style="background:var(--color-action);color:#fff;font-size:13px;font-weight:700;padding:7px 14px;border-radius:var(--radius)">Subscribe</span>
+        </div>
+      </div>
+      <div style="height:6px;background:linear-gradient(90deg,var(--cycle-blue),var(--cycle-green))"></div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">AppBar — ferry product, navy chrome, 3.2px nav items</div>
+    <div style="background:var(--color-nav);box-shadow:var(--shadow-elevation-2);border-radius:var(--radius-md-md);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px">
+      <span style="color:#fff;font-weight:700;font-size:20px;letter-spacing:var(--tracking-tight)">Lagos Ferry Map</span>
+      <div style="display:flex;gap:4px">
+        <span class="pill">About</span>
+        <span class="pill" style="color:var(--color-primary);background:var(--state-hover-primary)">Map</span>
+        <span class="pill">Directory</span>
+      </div>
+    </div>
+  </div>
+  <div data-theme="ferry">
+    <div class="lbl">Accordion — editorial, Lucide icons</div>
+    <div style="background:var(--color-surface);border-radius:var(--radius-md-md);padding:0 14px">
+      
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--color-outline-variant);">
+        <span style="display:flex;align-items:center;gap:10px;font-size:18px;color:var(--color-on-surface)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          Limitations
+        </span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-on-surface)"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
+        <span style="display:flex;align-items:center;gap:10px;font-size:18px;color:var(--color-on-surface)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          Context and Motivation
+        </span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-on-surface)"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+      </div>
+    </div>
+  </div>
+</div>

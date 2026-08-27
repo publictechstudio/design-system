@@ -1,0 +1,41 @@
+/* 4px base scale. The studio's section rhythm is generous and regular:
+   py-16 on mobile, py-24 from lg up, with a max-w-7xl content column. */
+:root {
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Studio layout */
+  --section-py: 64px;          /* py-16 */
+  --section-py-lg: 96px;       /* lg:py-24 */
+  --nav-height: 64px;          /* h-16 */
+  --brand-rule-width: 6px;     /* the animated nav underline */
+  --container-marketing: 80rem;/* max-w-7xl — the studio's content column */
+  --container-reading: 56rem;  /* max-w-4xl — body copy measure */
+  --container-lede: 48rem;     /* max-w-3xl — section subtitles */
+  --gutter: 16px;              /* px-4, rising to 24/32 at sm/lg */
+  --gutter-lg: 32px;
+  --logo-height-nav: 40px;     /* h-10 */
+  --logo-width-hero: 480px;    /* 300px below lg */
+  --card-image-height: 256px;  /* h-64 project card media */
+
+  /* Product layout (ferry) */
+  --appbar-height: 64px;
+  --container-prose: 56rem;
+  --container-directory: 64rem;
+  --container-wide: 72rem;
+  --hero-height: 400px;
+  --touch-target: 40px;
+}

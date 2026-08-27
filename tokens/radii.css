@@ -1,0 +1,23 @@
+/* ONE radius, system-wide: --radius = 0.2rem = 3.2px. Containers and
+   controls are almost square on every surface, studio and product alike.
+   Do not "round things off" to 8, 12 or 16px.
+
+   The single exception is the fully round chip — label chips, status
+   badges, the drag handle, and circular icon buttons. Everything else
+   takes --radius. */
+:root {
+  --radius: 3.2px;                 /* 0.2rem — the system's base radius */
+  --radius-container: 3.2px;       /* cards, images, dialogs, panels, tables */
+  --radius-control: 3.2px;         /* buttons, nav items, inputs, menu items */
+  --radius-control-sm: 1.2px;      /* calc(--radius - 2px) */
+  --radius-chip: 9999px;           /* label chips — the only round shape */
+
+  /* Retained names, now aliases. The ferry product's old MD3 scale
+     (4/8/12/16px) resolves to the system radius so existing markup keeps
+     working; prefer --radius-container / --radius-control in new work. */
+  --radius-md-sm: var(--radius);
+  --radius-md-md: var(--radius);
+  --radius-md-lg: var(--radius);
+  --radius-md-xl: var(--radius);
+  --radius-full: 9999px;           /* chips, badges, circular icon buttons */
+}
